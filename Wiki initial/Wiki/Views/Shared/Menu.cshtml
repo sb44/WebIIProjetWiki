@@ -1,0 +1,27 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Prog Web II", "Index", null, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink("Profil", "Profil", "Utilisateurs")  <text>&nbsp; &nbsp;</text></li>
+                    <li>@Html.ActionLink("Deconnexion", "Deconnexion", "Utilisateurs")</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Inscription", "Inscription", "Utilisateurs")   <text>&nbsp; &nbsp;</text></li>
+                    <li>@Html.ActionLink("Connexion", "Connexion", "Utilisateurs")</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
