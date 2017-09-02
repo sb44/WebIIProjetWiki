@@ -9,109 +9,175 @@ using System.Collections.Generic;
 using Wiki.Models.DAL;
 using Wiki.Models.Biz;
 
-namespace Wiki.Models.DAL
-{
-    public class Articles
-    {
-        // Auteurs:
-        public int Add(Article a)
-        {
-            return 0;
-        }
+namespace Wiki.Models.DAL {
+    public class Articles {
 
-        // Auteurs:
-        public Article Find(string titre)
-        {
-            return null;
-        }
+        // Auteurs: Sasha Bouchard
+        public int Add(Article a) {
+            int nbRecords = 0; SqlConnection connexion = null;
+            try {
+                using (connexion = new SqlConnection(ConnectionString)) {
+                    using (var sqlCmd = new SqlCommand("AddArticle", connexion)) { // Stored procedures
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
+                        sqlCmd.Parameters.Add("@Titre", SqlDbType.NVarChar, 100).Value = a.Titre;
+                        sqlCmd.Parameters.Add("@Contenu", SqlDbType.NVarChar, -1).Value = a.Contenu; //nvarcharmax
+                        sqlCmd.Parameters.Add("@IdContributeur", SqlDbType.Int).Value = a.IdContributeur;
 
-
-        // Auteurs: Vincent Simard, Phan Ngoc Long Denis, Floyd Ducharme, Pierre-Olivier Morin
-        public IList<string> GetTitres()
-        {
-            string cStr = ConfigurationManager.ConnectionStrings["Wiki"].ConnectionString;
-            using (SqlConnection cnx = new SqlConnection(cStr))
-            {
-                string requete = "GetTitresArticles";                   // Stored procedures
-                SqlCommand cmd = new SqlCommand(requete, cnx);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                try
-                {
-                    cnx.Open();
-                    SqlDataReader dataReader = cmd.ExecuteReader();
-                    IList<string> ListeTitre = new List<string>();
-                    while (dataReader.Read())
-                    {
-                        string t = (string)dataReader["Titre"];
-                        ListeTitre.Add(t);
+                        connexion.Open();
+                        nbRecords = sqlCmd.ExecuteNonQuery(); // avec "SET NOCOUNT OFF;" ds la procédure stocké
                     }
-                    dataReader.Close();
-
-                    return ListeTitre;
                 }
-                finally
-                {
-                    cnx.Close();
-                }
+            } catch (Exception e) {
+                string Msg = e.Message;
+            } finally {
+                connexion.Close();
             }
+
+            return nbRecords;
         }
 
-        // Auteurs: Alexandre, Vincent, William et Nicolas
-        public IList<Article> GetArticles()
-        {
-            using (var conn = new SqlConnection(ConnectionString))
-            {
-                conn.Open();
+        // Auteurs: Sasha Bouchard
+        public int Update(Article a) {
+            int nbRecords = 0; SqlConnection connexion = null;
+            try {
+                using (connexion = new SqlConnection(ConnectionString)) {                    
+                    using (var sqlCmd = new SqlCommand("UpdateArticle", connexion)) { // Stored procedures
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
+                        sqlCmd.Parameters.Add("@Titre", SqlDbType.NVarChar, 100).Value = a.Titre;
+                        sqlCmd.Parameters.Add("@Contenu", SqlDbType.NVarChar, -1).Value = a.Contenu; //nvarcharmax
+                        sqlCmd.Parameters.Add("@IdContributeur", SqlDbType.Int).Value = a.IdContributeur;
 
-                var cmd = new SqlCommand("GetArticles", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                try
-                {
-                    var dataReader = cmd.ExecuteReader();
-                    var articles = new List<Article>();
-
-                    while (dataReader.Read())
-                    {
-                        var article = new Article();
-
-                        article.Titre = (string)dataReader["Titre"];
-                        article.Contenu = (string)dataReader["Contenu"];
-                        article.Revision = (int)dataReader["Revision"];
-                        article.IdContributeur = (int)dataReader["IdContributeur"];
-                        article.DateModification = (DateTime)dataReader["DateModification"];
-
-                        articles.Add(article);
+                        connexion.Open();
+                        nbRecords = sqlCmd.ExecuteNonQuery(); // avec "SET NOCOUNT OFF;" ds la procédure stocké
                     }
-
-                    return articles;
                 }
-                catch
-                {
-                    return null;
-                }
+            } catch (Exception e) {
+                string Msg = e.Message;
+            } finally {
+                connexion.Close();
             }
+
+            return nbRecords;
         }
 
 
-        // Auteurs:
-        public int Update(Article a)
-        {
-            return 0;
+        // Auteurs: Sasha Bouchard
+        public int Delete(string titre) {
+
+            int nbRecords = 0; SqlConnection connexion = null;
+            try {
+                using (connexion = new SqlConnection(ConnectionString)) {
+                    using (var sqlCmd = new SqlCommand("DeleteArticle", connexion)) { // Stored procedures
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
+                        sqlCmd.Parameters.Add("@Titre", SqlDbType.NVarChar, 100).Value = titre;
+
+                        connexion.Open();
+                        nbRecords = sqlCmd.ExecuteNonQuery(); // avec "SET NOCOUNT OFF;" ds la procédure stocké
+                    }
+                }
+            } catch (Exception e) {
+                string Msg = e.Message;
+            } finally {
+                connexion.Close();
+            }
+
+            return nbRecords;
+        }
+
+        // Auteurs: Sasha Bouchard
+        public Article Find(string titre) {
+
+            Article monArticle = null; SqlConnection connexion = null;
+            try {
+                using (connexion = new SqlConnection(ConnectionString)) {
+                    using (var sqlCmd = new SqlCommand("FindArticle", connexion)) { // Stored procedures
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
+                        sqlCmd.Parameters.Add("@Titre", SqlDbType.NVarChar, 100).Value = titre;
+
+                        connexion.Open();
+                        SqlDataReader dr = sqlCmd.ExecuteReader();
+                        dr.Read();
+                        
+                        monArticle = new Article {
+                                Titre = (string)dr["Titre"],
+                                Contenu = (string)dr["Contenu"],
+                                Revision = (int)dr["Revision"],
+                                IdContributeur = (int)dr["IdContributeur"],
+                                DateModification = (DateTime)dr["DateModification"],
+                            };
+                        
+
+                        dr.Close();
+                    }
+                }
+            } catch (Exception e) {
+                    string Msg = e.Message;
+            } finally {
+                    connexion.Close();
+            }
+            
+            return monArticle; // retourne null par l'assignation en cas d'erreur
         }
 
 
+        // Auteurs: Sasha Bouchard
+        public IList<Article> GetArticles() {
+            List<Article> lstArticles = new List<Article>(); SqlConnection connexion = null;
+            try {
+                using (connexion = new SqlConnection(ConnectionString)) {
+                    using (var sqlCmd = new SqlCommand("GetArticles", connexion)) { // Stored procedures
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
 
-        // Auteurs:
-        public int Delete(string titre)
-        {
-            return 0;
+                        connexion.Open();
+                        SqlDataReader dr = sqlCmd.ExecuteReader();
+
+                        while (dr.Read()) {
+                            lstArticles.Add(new Article {
+                                Titre = (string)dr["Titre"],
+                                Contenu = (string)dr["Contenu"],
+                                Revision = (int)dr["Revision"],
+                                IdContributeur = (int)dr["IdContributeur"],
+                                DateModification = (DateTime)dr["DateModification"]
+                            });
+                        }
+                        dr.Close();
+                    }
+                }
+            } catch (Exception e) {
+                string Msg = e.Message;
+            } finally {
+                connexion.Close();
+            }
+
+            return lstArticles; // retourne une liste vide en cas d'erreur (ou si elle est vide)
         }
 
+        // Auteurs: Sasha Bouchard
+        public IList<string> GetTitres() {
+            IList<string> lstTitres = new List<string>(); SqlConnection connexion = null;
+            try {
+                using (connexion = new SqlConnection(ConnectionString)) {
+                    using (var sqlCmd = new SqlCommand("GetTitresArticles", connexion)) { // Stored procedures
+                        sqlCmd.CommandType = CommandType.StoredProcedure;
 
+                        connexion.Open();
+                        SqlDataReader dr = sqlCmd.ExecuteReader();
+                        while (dr.Read()) {
+                            lstTitres.Add((string)dr["Titre"]);
+                        }
+                        dr.Close();
+                    }
+                }
+            } catch (Exception e) {
+                string Msg = e.Message;
+            } finally {
+                connexion.Close();
+            }
 
-        private string ConnectionString
-        {
+            return lstTitres; // retourne une liste vide en cas d'erreur (ou si elle est vide)
+        }
+
+        private string ConnectionString {
             get { return ConfigurationManager.ConnectionStrings["Wiki"].ConnectionString; }
         }
 
