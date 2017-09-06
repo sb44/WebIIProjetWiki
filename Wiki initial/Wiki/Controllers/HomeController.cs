@@ -27,17 +27,14 @@ namespace Wiki.Controllers
                 else { // Saisie d'un article inexistant au clavier:
                     ViewBag.TitreSaisieInexistant = titre;
                     return View();
-                    //return RedirectToAction("ajouter", new { titre = titre});
                 }
 
             } // FIN 
 
-
-            // INVITATION À CRÉER L'ARTICLE S'IL Y A LIEU ( bouton ou home/index/ saisie )
-            string url = HttpContext.Request.Url.ToString();
-            if (url.Substring(url.Length - 11).ToLower().Equals("home/index/")) {
-                return RedirectToAction("ajouter","Home");
-            } // FIN
+            //// INVITATION À CRÉER L'ARTICLE S'IL Y A LIEU (home/index/<article inexistant>)
+            //string url = HttpContext.Request.Url.ToString();
+            //if (url.Substring(url.Length - 11).ToLower().Equals("home/index/")) {  
+            //} // FIN
 
             return View();
         }
