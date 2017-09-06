@@ -1,0 +1,54 @@
+﻿@model Wiki.Models.Biz.Article
+
+@{
+    ViewBag.Title = "Index";
+    string titre = (Model != null) ? Model.Titre + "" : "";
+}
+
+@section gauche {
+    @*@Html.Action("TableDesMatieres", "Home")*@
+    @Html.Action("PartialTableDesMatieres")  @*action va dans le controleur tandis que partial n'y va pas*@
+}
+
+    <div class="container-full">
+        <div class="row">
+
+            <div class="col-lg-12 text-center v-center">
+                @{if (Model == null) {
+                        <h1>Bienvenue au Wiki!</h1>
+                        <p class="lead">Sasha Howell Bouchard - Arash Amiri - Hai Qiang Xu</p>
+                    }
+                }
+
+                <br>
+
+                <form class="col-lg-12" method="post" action="/">
+                    <div class="input-group input-group-lg col-sm-offset-4 col-sm-4">
+                        @Html.TextBox("Titre", titre, new { @class = "center-block form-control input-lg", placeholder = "Saisir un article ici" })
+                        <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit" name="operation">GO</button></span>
+                    </div>
+                </form>
+            </div>
+
+        </div> <!-- /row -->
+        <br />
+        <br />
+        <br />
+    </div>
+
+    @{ if (ViewBag.TitreSaisieInexistant != null) {
+                <div class="alert alert-danger" role="alert">
+                    <b>Article inexistant!</b> Souhaitez-vous créer l'article "@ViewBag.TitreSaisieInexistant" ?  
+                </div>
+            // LIEN PERMETTANT DE CRÉER UN ARTICLE
+            string titreSaisieInex = (string)ViewBag.TitreSaisieInexistant + "";
+            @Html.ActionLink("Créer cet article", "ajouter", "Home", new { titre = titreSaisieInex }, null)
+        }
+    }
+
+
+    @{if (Model != null) { @*AFFICHER L'ARTICLE S'IL Y A LIEU*@
+            @Html.Partial("PartialDetailsArticle", Model)
+        }
+    }
+

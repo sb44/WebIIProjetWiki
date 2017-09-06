@@ -1,0 +1,95 @@
+﻿@model Wiki.Models.Biz.Article
+
+@{
+    ViewBag.Title = "modifier";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section gauche {
+    @*@Html.Action("TableDesMatieres", "Home")*@
+    @Html.Action("PartialTableDesMatieres")  @*action va dans le controleur tandis que partial n'y va pas*@
+}
+
+
+<h2>Modifier</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Article</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Titre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*C'est notre primary Key.. donc doit être disabled*@
+                @Html.HiddenFor(model => model.Titre)
+                @Html.TextBox("Titre", Model.Titre, new { @class = "form-control", disabled = "true" })
+                @*@Html.EditorFor(model => model.Titre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Titre, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contenu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*MOD SB TEXTAREAFOR*@
+                @Html.TextAreaFor(model => model.Contenu, 8, 36, new { htmlAttributes = new { @class = "form-control" } })             
+                @Html.ValidationMessageFor(model => model.Contenu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    @{ if (ViewBag.ApercuContenu == true) {
+            <div class="form-group">
+                @Html.Label("Apercu Contenu Html", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @* APERCU DE L'ARTICLE EN DESSOUS DE LA ZONE D'ÉDITION *@
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.Contenu))
+                </div>
+            </div>
+       }
+    }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateModification, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.DateModification)
+                @Html.TextBox("Date de Modification", Model.DateModification, new { @class = "form-control", disabled = "true" })
+                @*@Html.EditorFor(model => model.DateModification, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateModification, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Revision, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Revision)
+                @Html.TextBox("No. de revision", Model.Revision, new { @class = "form-control", disabled = "true" })
+                @*@Html.EditorFor(model => model.Revision, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Revision, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdContributeur, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdContributeur, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdContributeur, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" name="operation" value="Apercu Html" class="btn btn-default" /> 
+                <span> | </span>
+                <input type="submit" name="operation" value="Enregistrer" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Retour page précédente", null, null, null, new { href = Request.UrlReferrer })
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>

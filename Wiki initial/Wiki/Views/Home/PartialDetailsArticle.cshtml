@@ -1,0 +1,57 @@
+﻿@model Wiki.Models.Biz.Article
+
+<div>
+    <h4>Détails Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contenu)
+
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Contenu)*@
+            @* ************************* CODE POUR AFFICHER LE HTML CORRECTEMENT DANS LA PAGE ************************* *@
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Contenu))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Revision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Revision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdContributeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdContributeur)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "modifier", "Home", new { titre = Model.Titre }, null) |
+    @Html.ActionLink("Supprimer", "supprimerArticle", "Home", new { titre = Model.Titre }, null)
+
+    @*@Html.ActionLink("Back to List", "Index")*@
+</p>

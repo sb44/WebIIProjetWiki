@@ -14,7 +14,8 @@ namespace Wiki.Controllers
     {
         Articles repo = new Articles();
 
-        [ValidateInput(false)]
+        
+        //[ValidateInput(false)]
         public ActionResult Index(String operation, Article a)
         {
             switch (operation)

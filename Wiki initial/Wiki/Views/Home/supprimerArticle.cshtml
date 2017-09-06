@@ -1,0 +1,72 @@
+﻿@model Wiki.Models.Biz.Article
+
+@{
+    ViewBag.Title = "supprimerArticle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section gauche {
+    @*@Html.Action("TableDesMatieres", "Home")*@
+    @Html.Action("PartialTableDesMatieres")  @*action va dans le controleur tandis que partial n'y va pas*@
+}
+
+<h2>Supprimer</h2>
+
+<h3>Êtes-vous certain de vouloir supprimer l'article?</h3>
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contenu)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Contenu)*@
+            @* ************************* CODE POUR AFFICHER LE HTML CORRECTEMENT DANS LA PAGE ************************* *@
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Contenu))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Revision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Revision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdContributeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdContributeur)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm(new { titre = Model.Titre })) {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour page précédente", null, null, null, new { href = Request.UrlReferrer })
+        </div>
+    }
+</div>

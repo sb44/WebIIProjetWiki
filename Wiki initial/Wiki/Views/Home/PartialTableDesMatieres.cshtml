@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Wiki.Models.Biz.Article>
+<h3>Table des Matières</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titre)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Contenu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Revision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdContributeur)
+        </th>*@
+        @*<th></th>*@
+    </tr>
+
+@foreach (var a in Model) {
+    <tr>
+        <td>
+            @*@Html.DisplayFor(modelItem => a.Titre)*@
+            @Html.Partial("PartialArticle", a)
+        </td>
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Contenu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModification)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Revision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdContributeur)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>
+
+
+    @*<h2>Table des matières</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titre)
+            </th>
+        <tr>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+        </tr>
+        }
+
+        </table>*@

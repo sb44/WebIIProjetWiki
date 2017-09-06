@@ -50,16 +50,21 @@
 {
     @Html.AntiForgeryToken()
     <hr />
+    @Html.ValidationSummary(false, "Veuillez corriger les erreurs suivantes", new { @class = "text-danger" })
     <br />
     <div class="form-horizontal">
 
         <div class="form-group">
             <span class="control-label col-md-2">Titre</span>
-            @Html.TextBox("Titre")
+            @*@Html.TextBox("Titre")*@
+            @Html.TextBox("Titre", "", new { @class = "form-control" })
+            @Html.ValidationMessage("Titre", "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             <span class="control-label col-md-2">Contenu</span>
-            @Html.TextBox("Contenu")
+            @*@Html.TextBox("Contenu")*@
+            @Html.TextBox("Contenu", "", new { @class = "form-control" })
+            @Html.ValidationMessage("Contenu", "", new { @class = "text-danger" })
         </div>
         <br />
         <div class="form-group">

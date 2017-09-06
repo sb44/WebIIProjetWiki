@@ -189,10 +189,15 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\DAL\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\PartialTableDesMatieres.cshtml" />
+    <Content Include="Views\Home\PartialArticle.cshtml" />
+    <Content Include="Views\Home\modifier.cshtml" />
+    <Content Include="Views\Home\ajouter.cshtml" />
+    <Content Include="Views\Home\supprimerArticle.cshtml" />
+    <Content Include="Views\Home\PartialDetailsArticle.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Home\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

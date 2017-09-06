@@ -6,10 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prog Web II @ViewBag.Title</title>
 
+    @*@*ajout sb*@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        
+        /* Custom container */
+        .container-full {
+          margin: 0 auto;
+          width: 100%;
+          min-height:100%;
+          background-color:#222222;
+          color:#eee;
+          overflow:hidden;
+        }
 
-    @*ajout sb*@
+        .container-full a {
+          color:#efefef;
+          text-decoration:none;
+        }
+
+        .v-center {
+          margin-top:7%;
+        }
+
+    </style>
+    @*fin ajout sb*@*
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -21,13 +44,16 @@
             <br /><br />
             <div class="col-sm-3 sidenav">
                 @RenderSection("gauche", required: false)
+                
             </div>
             <div class="col-sm-9">
                 @RenderBody()
             </div>
         </div>
+        <hr />
         <footer class="container-fluid">
             <p>&copy; @DateTime.Now.Year - Mon Wiki</p>
+            <p>Sasha Howell Bouchard - Arash Amiri - Hai Qiang Xu</p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
