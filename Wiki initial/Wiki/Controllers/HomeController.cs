@@ -8,10 +8,8 @@ using System.Web.Routing;
 using Wiki.Models.Biz; //aj sb
 using Wiki.Models.DAL;
 
-namespace Wiki.Controllers
-{
-    public class HomeController : Controller
-    {
+namespace Wiki.Controllers {
+    public class HomeController : Controller {
         static Articles repo = new Articles();
         static IList<Article> lstArticles = repo.GetArticles();
 
@@ -116,7 +114,7 @@ namespace Wiki.Controllers
             if (repo.Delete(titre) != 0)
                 lstArticles.Remove(lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
 

@@ -6,7 +6,7 @@
     /* Le "titreParDefault" est soit 1- celui récupéré sur le POST pour obtenir l'apercu du Contenu HTML, ou 
        sinon 2- celui stocké dans le ViewBag pour la création d'un article
     */
-    string titreParDefault = (Model.Titre == null) ? (string)ViewBag.TitreParDefault + "": Model.Titre;
+    string titreParDefault = (Model == null) ? (string)ViewBag.TitreParDefault + "": Model.Titre;
 }
 
 @section gauche {
