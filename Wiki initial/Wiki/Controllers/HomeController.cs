@@ -58,7 +58,7 @@ namespace Wiki.Controllers {
         [ValidateInput(false)]
         public ActionResult ajouter(Article a, string operation) {
             switch (operation) {
-                case "Enregistrer":
+                case "Ajouter":
                     if (ModelState.IsValid) {
                         if (repo.Add(a) != 0)
                             lstArticles = repo.GetArticles();
