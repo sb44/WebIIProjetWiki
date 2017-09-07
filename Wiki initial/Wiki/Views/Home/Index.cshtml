@@ -14,16 +14,20 @@
         <div class="row">
 
             <div class="col-lg-12 text-center v-center">
-                @{if (Model == null) {
+                @{if (Session.IsNewSession) {
                         <h1>Bienvenue au Wiki!</h1>
                         <p class="lead">Sasha Howell Bouchard - Arash Amiri - Hai Qiang Xu</p>
+                    } else {
+                        <h1>Wiki!</h1>
+                        <p class="lead">Sasha Howell Bouchard - Arash Amiri - Hai Qiang Xu</p>
+
                     }
-                }
+                } 
 
                 <br>
 
                 <form class="col-lg-12" method="post" action="/">
-                    <div class="input-group input-group-lg col-sm-offset-4 col-sm-4">
+                    <div class="input-group input-group-lg col-sm-offset-1 col-sm-10">
                         @Html.TextBox("Titre", titre, new { @class = "center-block form-control input-lg", placeholder = "Saisir un article ici" })
                         <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit" name="operation">GO</button></span>
                     </div>
