@@ -12,7 +12,7 @@ using Wiki.Models.Biz;
 namespace Wiki.Models.DAL {
     public class Articles {
 
-        // Auteurs: Sasha Bouchard
+        // Auteurs: Sasha Bouchard 
         public int Add(Article a) {
             int nbRecords = 0; SqlConnection connexion = null;
             try {
@@ -36,7 +36,7 @@ namespace Wiki.Models.DAL {
             return nbRecords;
         }
 
-        // Auteurs: Sasha Bouchard
+        // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public int Update(Article a) {
             int nbRecords = 0; SqlConnection connexion = null;
             try {
@@ -61,7 +61,7 @@ namespace Wiki.Models.DAL {
         }
 
 
-        // Auteurs: Sasha Bouchard
+        // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public int Delete(string titre) {
 
             int nbRecords = 0; SqlConnection connexion = null;
@@ -84,7 +84,7 @@ namespace Wiki.Models.DAL {
             return nbRecords;
         }
 
-        // Auteurs: Sasha Bouchard
+        // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public Article Find(string titre) {
 
             Article monArticle = null; SqlConnection connexion = null;
