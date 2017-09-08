@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Wiki.mdf" />
+    <Content Include="App_Data\WikiSQL.sql" />
     <Content Include="App_Data\Wiki_log.ldf">
       <DependentUpon>Wiki.mdf</DependentUpon>
     </Content>
