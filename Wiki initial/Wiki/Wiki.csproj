@@ -121,12 +121,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DALController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Biz\Article.cs" />
+    <Compile Include="Models\Biz\ArticleManager.cs" />
+    <Compile Include="Models\Biz\DTO\ArticleDTO.cs" />
+    <Compile Include="Models\Biz\DTO\UtilisateurDTO.cs" />
+    <Compile Include="Models\Biz\Interfaces\IArticleRepository.cs" />
+    <Compile Include="Models\Biz\Interfaces\IUtilisateurRepository.cs" />
     <Compile Include="Models\Biz\PasswordHash.cs" />
     <Compile Include="Models\DAL\Articles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

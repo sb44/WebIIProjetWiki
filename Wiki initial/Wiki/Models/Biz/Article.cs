@@ -2,10 +2,11 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Wiki.Models.Biz
-{
-    public class Article
-    {
+
+
+namespace Wiki.Models.Biz {
+    public class Article {
+
         [Required]
         public string Titre { get; set; }
 
@@ -21,4 +22,6 @@ namespace Wiki.Models.Biz
         public int IdContributeur { get; set; }
 
     }
+
+
 }

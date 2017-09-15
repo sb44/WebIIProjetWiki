@@ -6,13 +6,24 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Wiki.Models.Biz; //aj sb
-using Wiki.Models.DAL;
+using Wiki.Models.Biz.Interfaces;
 
 namespace Wiki.Controllers {
     public class HomeController : Controller {
 
-        static Articles repo = new Articles();
-        static IList<Article> lstArticles = repo.GetArticles(); 
+        //static Articles repo = new Articles();
+        //static IList<Article> lstArticles = repo.GetArticles(); 
+
+        private static readonly IArticleRepository articleRepository = new Models.DAL.Articles();
+        private readonly IArticleRepository _articleRepository; //readonly assure que seul le ctor peut l'assigner
+        private static ArticleManager articleManager;
+
+        public HomeController() {
+            if (articleManager == null) {
+                _articleRepository = articleRepository;
+                articleManager = new ArticleManager(_articleRepository);
+            }
+        }
 
         // GET: Home
         [Route("~/")]                       // cet atttribut défini la page d'accueil de l'application
@@ -22,7 +33,7 @@ namespace Wiki.Controllers {
 
             // AFFICHER L'ARTICLE SI SAISIE OU SÉLECTIONNÉ
             if (!String.IsNullOrEmpty(titre)) {
-                Article a = lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
+                Article a = articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
                 if (a != null)
                     return View(a);
                 else { /* Saisie d'un article inexistant au clavier, donc 
@@ -38,7 +49,7 @@ namespace Wiki.Controllers {
 
         [ChildActionOnly]
         public ActionResult PartialTableDesMatieres() {
-            return PartialView(lstArticles);
+            return PartialView(articleManager.lstArticles);
         }
 
         [HttpGet]
@@ -62,13 +73,15 @@ namespace Wiki.Controllers {
                 case "Ajouter":
 
                     // Valider que le titre de l'article n'existe pas déjà...
-                    if (lstArticles.FirstOrDefault(p => p.Titre.Equals(a.Titre)) != null)
+                    if (articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(a.Titre)) != null)
                         ModelState.AddModelError("Titre", "Ce titre est déjà existant, veuillez réessayer avec un autre titre.");
 
                     if (ModelState.IsValid) {
-                        
-                        if (repo.Add(a) != 0)
-                            lstArticles = repo.GetArticles();
+
+                        //if (repo.Add(a) != 0)
+                        //    lstArticles = repo.GetArticles();
+                        articleManager.Add(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
+
                         return RedirectToAction("Index", "Home", new { titre = a.Titre }); // pour displayer la nouvelle article créé..
                     } else {
                         //string fullName = Utilisateur.getFullNameByUserName(User.Identity.Name);
@@ -89,7 +102,7 @@ namespace Wiki.Controllers {
         [Route("home/modifier/{titre}")]
         public ActionResult modifier(string titre) {
             // Va faire afficher la page d'erreur par défault Error.cshtml si le titre de l'article n'existe pas..
-            return View(lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
+            return View(articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
         }
 
         [HttpPost]
@@ -99,8 +112,9 @@ namespace Wiki.Controllers {
             switch (operation) {
                 case "Enregistrer":
                     if (ModelState.IsValid) {
-                        if (repo.Update(a) != 0)
-                            lstArticles = repo.GetArticles();
+                        articleManager.Update(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
+                        //if (repo.Update(a) != 0)
+                        //    lstArticles = repo.GetArticles();
                         return RedirectToAction("Index", "Home");
                     } else
                         return View(a);
@@ -116,7 +130,7 @@ namespace Wiki.Controllers {
         [Route("home/supprimer/{titre}")]
         public ActionResult supprimerArticle(string titre) {
             // Va faire afficher la page d'erreur par défault Error.cshtml si le titre de l'article n'existe pas..
-            return View(lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
+            return View(articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
         }
 
         [HttpPost]
@@ -124,9 +138,9 @@ namespace Wiki.Controllers {
         public ActionResult supprimerArticleConfirmation(string titre) {
             //Article.supprimer(Id);
             //Utilisateur u = Utilisateur.getUtilisateurParName(User.Identity.Name);
-            if (repo.Delete(titre) != 0)
-                lstArticles.Remove(lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
-
+            //if (repo.Delete(titre) != 0)
+            //    articleManager.lstArticles.Remove(articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
+            articleManager.Delete(titre);
             return RedirectToAction("Index", "Home");
         }
 

@@ -1,19 +1,16 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
-using System.Web;
 using System.Collections.Generic;
-using Wiki.Models.DAL;
-using Wiki.Models.Biz;
+using Wiki.Models.Biz.DTO;
+using Wiki.Models.Biz.Interfaces;
 
 namespace Wiki.Models.DAL {
-    public class Articles {
+    public class Articles : IArticleRepository {
 
         // Auteurs: Sasha Bouchard 
-        public int Add(Article a) {
+        public int Add(ArticleDTO a) {
             int nbRecords = 0; SqlConnection connexion = null;
             try {
                 using (connexion = new SqlConnection(ConnectionString)) {
@@ -37,7 +34,7 @@ namespace Wiki.Models.DAL {
         }
 
         // Auteurs: Sasha Bouchard verifié par Arash Amiri
-        public int Update(Article a) {
+        public int Update(ArticleDTO a) {
             int nbRecords = 0; SqlConnection connexion = null;
             try {
                 using (connexion = new SqlConnection(ConnectionString)) {                    
@@ -85,9 +82,9 @@ namespace Wiki.Models.DAL {
         }
 
         // Auteurs: Sasha Bouchard verifié par Arash Amiri
-        public Article Find(string titre) {
+        public ArticleDTO Find(string titre) {
 
-            Article monArticle = null; SqlConnection connexion = null;
+            ArticleDTO monArticle = null; SqlConnection connexion = null;
             try {
                 using (connexion = new SqlConnection(ConnectionString)) {
                     using (var sqlCmd = new SqlCommand("FindArticle", connexion)) { // Stored procedures
@@ -98,7 +95,7 @@ namespace Wiki.Models.DAL {
                         SqlDataReader dr = sqlCmd.ExecuteReader();
                         dr.Read();
                         
-                        monArticle = new Article {
+                        monArticle = new ArticleDTO {
                                 Titre = (string)dr["Titre"],
                                 Contenu = (string)dr["Contenu"],
                                 Revision = (int)dr["Revision"],
@@ -121,8 +118,8 @@ namespace Wiki.Models.DAL {
 
 
         // Auteurs: Sasha Bouchard
-        public IList<Article> GetArticles() {
-            List<Article> lstArticles = new List<Article>(); SqlConnection connexion = null;
+        public IList<ArticleDTO> GetArticles() {
+            List<ArticleDTO> lstArticles = new List<ArticleDTO>(); SqlConnection connexion = null;
             try {
                 using (connexion = new SqlConnection(ConnectionString)) {
                     using (var sqlCmd = new SqlCommand("GetArticles", connexion)) { // Stored procedures
@@ -132,7 +129,7 @@ namespace Wiki.Models.DAL {
                         SqlDataReader dr = sqlCmd.ExecuteReader();
 
                         while (dr.Read()) {
-                            lstArticles.Add(new Article {
+                            lstArticles.Add(new ArticleDTO {
                                 Titre = (string)dr["Titre"],
                                 Contenu = (string)dr["Contenu"],
                                 Revision = (int)dr["Revision"],
