@@ -17,14 +17,20 @@ namespace Wiki.Models.Biz {
             this.lstTitres = this.GetTitres();
         }
 
+        public void UpdateLists() {
+            this.lstArticles = this.GetArticles();
+            this.lstTitres = this.GetTitres();
+        }
 
         public int Add(ArticleDTO aDto) {
 
             int result = -1;
             try {
                 result = _articleRepository.Add(aDto);
-                this.lstArticles = this.GetArticles();
-                this.lstTitres = this.GetTitres();
+
+                if (result == 1)
+                    this.UpdateLists();
+
             } catch (System.Exception) {
                 throw;
             }
@@ -37,8 +43,10 @@ namespace Wiki.Models.Biz {
             int result = -1;
             try {
                 result = _articleRepository.Update(aDto);
-                this.lstArticles = this.GetArticles();
-                this.lstTitres = this.GetTitres();
+
+                if (result == 1)
+                    this.UpdateLists();
+
             } catch (System.Exception) {
                 throw;
             }
@@ -50,8 +58,10 @@ namespace Wiki.Models.Biz {
             int result = -1;
             try {
                 result = _articleRepository.Delete(titre);
-                this.lstArticles = this.GetArticles();
-                this.lstTitres = this.GetTitres();
+
+                if (result == 1)
+                    this.UpdateLists();
+
             } catch (System.Exception) {
                 throw;
             }
