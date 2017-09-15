@@ -1,3 +1,6 @@
 ﻿@model Wiki.Models.Biz.Article
 
-@Html.ActionLink(Model.Titre, "Index", new { titre = Model.Titre }) 
+@*@Html.ActionLink(Model.Titre, "Index", new { titre = Model.Titre })*@                     @*==> ex: output : <a href="/?titre=test3">test3</a>*@   
+@*@Html.ActionLink(Model.Titre, "Index", "Home", new { titre = Model.Titre }, null)*@       @*==> ex: output : <a href="/?titre=test3">test3</a>*@  
+ 
+<a href="/home/index/@Model.Titre">@Model.Titre</a> @*pour la "bonne" affichage esthétique de l'URL*@
