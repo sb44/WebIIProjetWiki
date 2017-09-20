@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -132,7 +133,10 @@
     <Compile Include="Models\Biz\Interfaces\IArticleRepository.cs" />
     <Compile Include="Models\Biz\Interfaces\IUtilisateurRepository.cs" />
     <Compile Include="Models\Biz\PasswordHash.cs" />
+    <Compile Include="Models\Biz\UtilisateurManager.cs" />
+    <Compile Include="Models\Biz\ViewModel\UtilisateurViewModel.cs" />
     <Compile Include="Models\DAL\Articles.cs" />
+    <Compile Include="Models\DAL\Utilisateurs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +201,10 @@
     <Content Include="Views\Home\ajouter.cshtml" />
     <Content Include="Views\Home\supprimerArticle.cshtml" />
     <Content Include="Views\Home\PartialDetailsArticle.cshtml" />
+    <Content Include="Views\Account\Connexion.cshtml" />
+    <Content Include="Views\Account\Inscription.cshtml" />
+    <Content Include="Views\Account\ModifierProfil.cshtml" />
+    <Content Include="Views\Account\ModifierMDP.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

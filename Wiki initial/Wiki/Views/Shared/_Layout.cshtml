@@ -38,12 +38,12 @@
 
 </head>
 <body>
-    @Html.Partial("Menu")
+  @Html.Partial("Menu")
     <div class="container">
         <div class="row content">
             <br /><br />
             <div class="col-sm-3 sidenav">
-                @RenderSection("gauche", required: false)
+             @RenderSection("gauche", required: false)
                 
             </div>
             <div class="col-sm-9">
@@ -58,5 +58,7 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)  @* Ajout par Haiqiang XU *@
 </body>
 </html>

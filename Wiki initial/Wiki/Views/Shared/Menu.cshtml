@@ -6,19 +6,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Prog Web II", "Index", null, new { @class = "navbar-brand" })
+            @Html.ActionLink("Prog Web II", "Index", "", null, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li>@Html.ActionLink("Profil", "Profil", "Utilisateurs")  <text>&nbsp; &nbsp;</text></li>
-                    <li>@Html.ActionLink("Deconnexion", "Deconnexion", "Utilisateurs")</li>
+                    <li>@Html.ActionLink("Profil", "ModifierProfil", "Account", new { ReturnUrl = this.Request.RawUrl }, null)  <text>&nbsp; &nbsp;</text></li>
+                    <li>@Html.ActionLink("Deconnexion", "Deconnexion", "Account")</li>
                 }
                 else
                 {
-                    <li>@Html.ActionLink("Inscription", "Inscription", "Utilisateurs")   <text>&nbsp; &nbsp;</text></li>
-                    <li>@Html.ActionLink("Connexion", "Connexion", "Utilisateurs")</li>
+                    <li>@Html.ActionLink("Inscription", "Inscription", "Account")   <text>&nbsp; &nbsp;</text></li>
+                    <li>@Html.ActionLink("Connexion", "Connexion", "Account", new { ReturnUrl = this.Request.RawUrl }, null)</li>
                 }
             </ul>
         </div>
