@@ -1,6 +1,7 @@
 ﻿/////////////////////////////////// Par Haiqiang Xu   ////////////////////////////////////////////////////  
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Wiki.Ressource;
 
 using Wiki.Models.DAL;
 
@@ -8,11 +9,12 @@ namespace Wiki.Models.Biz {
     public class ConnexionViewModel {
         [Required(ErrorMessage = "Veuillez entrer votre courriel!"), StringLength(50, ErrorMessage = "Courriel ne peut pas depasser 50 lettres!")]
         [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Courriel invalide!")]
+        [Display(Name = "courriel", ResourceType = typeof(RessourceView))]
         public string Courriel { set; get; }
 
         [DataType(DataType.Password)]
         [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 letters et plus que 6 lesttres!")]
-        [Display(Name = "Mot de passe")]
+        [Display(Name = "motDePass", ResourceType = typeof(RessourceView))]
         public string MDP { get; set; }
     }
 
@@ -20,27 +22,30 @@ namespace Wiki.Models.Biz {
         [Uniqueness("Courriel")]
         [Required(ErrorMessage = "Veuillez entrer votre courriel!"), StringLength(50,ErrorMessage = "Courriel ne peut pas depasser 50 lettres!")]
         [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Courriel invalide!")]
+        [Display(Name = "courriel", ResourceType = typeof(RessourceView))]
         public string Courriel { set; get; }
 
         [DataType(DataType.Password)]
         [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 letters et plus que 6 lesttres!")]
-        [Display(Name = "Mot de passe")]
+        [Display(Name = "motDePass", ResourceType = typeof(RessourceView))]
         public string MDP { get; set; }
 
         [DataType(DataType.Password)]
         [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 letters et plus que 6 lesttres!")]
         [Compare("MDP", ErrorMessage = "les mots de passe ne sont pas memes!")]
-        [Display(Name = "Mot de passe confirmes")]
+        [Display(Name = "MDPConfirmer", ResourceType = typeof(RessourceView))]
         public string MDPConfirmer { get; set; }
 
         [Required(ErrorMessage = "Veuillez entrer votre nom de famille!"), StringLength(50, ErrorMessage = "Nom de famille ne peut pas depasser 50 lettres!")]
-        [Display(Name = "Nom de famille")]
+        [Display(Name = "nomFamille", ResourceType = typeof(RessourceView))]
         public string NomFamille { get; set; }
 
         [Required(ErrorMessage = "Veuillez entrer votre prenom!"), StringLength(50, ErrorMessage = "Prenom ne peut pas depasser 50 lettres!")]
+        [Display(Name = "prenom", ResourceType = typeof(RessourceView))]
         public string Prenom { get; set; }
 
         [Required]
+        [Display(Name = "langue", ResourceType = typeof(RessourceView))]
         public string Langue { get; set; }
 
         [Required]
@@ -53,13 +58,13 @@ namespace Wiki.Models.Biz {
 
         [DataType(DataType.Password)]
         [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 lettres et plus que 6 lesttres!")]
-        [Display(Name = "Nouveau mot de passe")]
+        [Display(Name = "nouvMotDePass", ResourceType = typeof(RessourceView))]
         public string MDP { get; set; }
 
         [DataType(DataType.Password)]
         [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 lettres et plus que 6 lesttres!")]
         [Compare("MDP", ErrorMessage = "les mots de passe ne sont pas memes!")]
-        [Display(Name = "Confirmer mot de passe")]
+        [Display(Name = "MDPConfirmer", ResourceType = typeof(RessourceView))]
         public string MDPConfirmer { get; set; }
     }
 
@@ -68,13 +73,15 @@ namespace Wiki.Models.Biz {
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Veuillez entrer votre nom de famille!"), StringLength(50, ErrorMessage = "Nom de famille ne peut pas depasser 50 lettres!")]
-        [Display(Name = "Nom de famille")]
+        [Display(Name = "nomFamille", ResourceType = typeof(RessourceView))]
         public string NomFamille { get; set; }
-
+       
         [Required(ErrorMessage = "Veuillez entrer votre prenom!"), StringLength(50, ErrorMessage = "Prenom ne peut pas depasser 50 lettres!")]
+        [Display(Name = "prenom", ResourceType = typeof(RessourceView))]
         public string Prenom { get; set; }
 
         [Required]
+        [Display(Name = "langue", ResourceType = typeof(RessourceView))]
         public string Langue { get; set; }
 
         public System.Web.Mvc.SelectList SelectionLangue { get; set; }
@@ -99,7 +106,7 @@ namespace Wiki.Models.Biz {
 
  
             if (repo.FindUtilisateurByCourriel(value.ToString()) != null) {
-                return new ValidationResult(validationContext.DisplayName + " deja exists, veuillez changer un autre!");
+                return new ValidationResult(validationContext.DisplayName + Wiki.Ressource.RessourceView.ERR_dejaExist);
             }
             return null;
         }

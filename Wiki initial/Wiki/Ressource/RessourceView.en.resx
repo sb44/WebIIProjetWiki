@@ -225,4 +225,64 @@
     <value>Delete</value>
     <comment>Hardcoded généralement</comment>
   </data>
+  <data name="courriel" xml:space="preserve">
+    <value>Email</value>
+    <comment>ViewModel connexion</comment>
+  </data>
+  <data name="ERR_courriel" xml:space="preserve">
+    <value>Please enter your Email!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_courriel50" xml:space="preserve">
+    <value>Email can not exceed 50 characters!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_dejaExist" xml:space="preserve">
+    <value>already exists, please change another!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_MDP" xml:space="preserve">
+    <value>assword must be less than 70 characters and more than 6 characters!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_MDPCompare" xml:space="preserve">
+    <value>Passwords don't match!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_nom" xml:space="preserve">
+    <value>Please enter your last name!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_prenom" xml:space="preserve">
+    <value>Please enter your first name!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="langue" xml:space="preserve">
+    <value>Language</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="MDPConfirmer" xml:space="preserve">
+    <value>confirm password</value>
+    <comment>ViewModel ChangerMotDePasse</comment>
+  </data>
+  <data name="motDePass" xml:space="preserve">
+    <value>Password</value>
+    <comment>ViewModel connexion</comment>
+  </data>
+  <data name="motDePassConfirm" xml:space="preserve">
+    <value>Confirm password</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="nomFamille" xml:space="preserve">
+    <value>Last name</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="nouvMotDePass" xml:space="preserve">
+    <value>New password</value>
+    <comment>ViewModel ChangerMotDePasse</comment>
+  </data>
+  <data name="prenom" xml:space="preserve">
+    <value>First name</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
 </root>

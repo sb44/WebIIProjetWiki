@@ -61,7 +61,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contenu.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string Contenu {
             get {
@@ -70,7 +70,16 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date de modification.
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string courriel {
+            get {
+                return ResourceManager.GetString("courriel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string DateModification {
             get {
@@ -79,7 +88,70 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Id  Contributeur.
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ERR_courriel {
+            get {
+                return ResourceManager.GetString("ERR_courriel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ERR_courriel50 {
+            get {
+                return ResourceManager.GetString("ERR_courriel50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ERR_dejaExist {
+            get {
+                return ResourceManager.GetString("ERR_dejaExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ERR_MDP {
+            get {
+                return ResourceManager.GetString("ERR_MDP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ERR_MDPCompare {
+            get {
+                return ResourceManager.GetString("ERR_MDPCompare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ERR_nom {
+            get {
+                return ResourceManager.GetString("ERR_nom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ERR_prenom {
+            get {
+                return ResourceManager.GetString("ERR_prenom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string IdContributeur {
             get {
@@ -88,7 +160,70 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No. de revision.
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string langue {
+            get {
+                return ResourceManager.GetString("langue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string MDPConfirmer {
+            get {
+                return ResourceManager.GetString("MDPConfirmer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string motDePass {
+            get {
+                return ResourceManager.GetString("motDePass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string motDePassConfirm {
+            get {
+                return ResourceManager.GetString("motDePassConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string nomFamille {
+            get {
+                return ResourceManager.GetString("nomFamille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string nouvMotDePass {
+            get {
+                return ResourceManager.GetString("nouvMotDePass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string prenom {
+            get {
+                return ResourceManager.GetString("prenom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string Revision {
             get {
@@ -97,7 +232,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Titre.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string Titre {
             get {
@@ -106,7 +241,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apercu Contenu Html.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_Ajout_apercuContHtml {
             get {
@@ -115,7 +250,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apercu Html.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_Ajout_apercuHtml {
             get {
@@ -124,7 +259,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erreur.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_erreur_erruer {
             get {
@@ -133,7 +268,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Une erreur s&apos;est produite lors du traitement de votre demande..
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_erreur_phrase {
             get {
@@ -142,7 +277,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Article inexistant!.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_Ind_articleNull {
             get {
@@ -151,7 +286,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bienvenue au Wiki!.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_Ind_bienvenu {
             get {
@@ -160,7 +295,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Créer cet article.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_Ind_creerArticle {
             get {
@@ -169,7 +304,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Souhaitez-vous créer l&apos;article.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_Ind_SouhaitCreArticle {
             get {
@@ -178,7 +313,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Détails Article.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_partDet_artDetail {
             get {
@@ -187,7 +322,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Table des Matières.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_partTabMat_tabMatier {
             get {
@@ -196,7 +331,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Êtes-vous certain de vouloir supprimer l&apos;article?.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string vHC_supprim_quest {
             get {
@@ -205,7 +340,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ajouter.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_ajout {
             get {
@@ -214,7 +349,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Article.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_article {
             get {
@@ -223,7 +358,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enregistrer.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_enregist {
             get {
@@ -232,7 +367,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Connexion.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_menu_conn {
             get {
@@ -241,7 +376,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deconnexion.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_menu_dec {
             get {
@@ -250,7 +385,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inscription.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_menu_ins {
             get {
@@ -259,7 +394,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_menu_prof {
             get {
@@ -268,7 +403,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modifier.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_modif {
             get {
@@ -277,7 +412,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Retour page précédente.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_Modif_retourPreced {
             get {
@@ -286,7 +421,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Retour à l&apos;Accueuil.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_retourAcc {
             get {
@@ -295,7 +430,7 @@ namespace Wiki.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Supprimer.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ZHC_suprim {
             get {

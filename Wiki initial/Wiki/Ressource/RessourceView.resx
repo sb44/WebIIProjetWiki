@@ -118,111 +118,171 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Contenu" xml:space="preserve">
-    <value>Contenu</value>
+    <value />
     <comment>Class Articles</comment>
   </data>
   <data name="DateModification" xml:space="preserve">
-    <value>Date de modification</value>
+    <value />
     <comment>Class Articles</comment>
   </data>
   <data name="IdContributeur" xml:space="preserve">
-    <value>Id  Contributeur</value>
+    <value />
     <comment>Class Articles</comment>
   </data>
   <data name="Revision" xml:space="preserve">
-    <value>No. de revision</value>
+    <value />
     <comment>Class Articles</comment>
   </data>
   <data name="Titre" xml:space="preserve">
-    <value>Titre</value>
+    <value />
     <comment>Class Articles</comment>
   </data>
   <data name="vHC_Ajout_apercuContHtml" xml:space="preserve">
-    <value>Apercu Contenu Html</value>
+    <value />
     <comment>Hardcoded dans la vue Ajouter</comment>
   </data>
   <data name="vHC_Ajout_apercuHtml" xml:space="preserve">
-    <value>Apercu Html</value>
+    <value />
     <comment>Hardcoded dans la vue Ajouter</comment>
   </data>
   <data name="vHC_erreur_erruer" xml:space="preserve">
-    <value>Erreur</value>
+    <value />
     <comment>Hardcoded dans la vue Erreur</comment>
   </data>
   <data name="vHC_erreur_phrase" xml:space="preserve">
-    <value>Une erreur s'est produite lors du traitement de votre demande.</value>
+    <value />
     <comment>Hardcoded dans la vue Erreur</comment>
   </data>
   <data name="vHC_Ind_articleNull" xml:space="preserve">
-    <value>Article inexistant!</value>
+    <value />
     <comment>Hardcoded dans la vue Index</comment>
   </data>
   <data name="vHC_Ind_bienvenu" xml:space="preserve">
-    <value>Bienvenue au Wiki!</value>
+    <value />
     <comment>Hardcoded dans la vue Index</comment>
   </data>
   <data name="vHC_Ind_creerArticle" xml:space="preserve">
-    <value>Créer cet article</value>
+    <value />
     <comment>Hardcoded dans la vue Index</comment>
   </data>
   <data name="vHC_Ind_SouhaitCreArticle" xml:space="preserve">
-    <value>Souhaitez-vous créer l'article</value>
+    <value />
     <comment>Hardcoded dans la vue Index</comment>
   </data>
   <data name="vHC_partDet_artDetail" xml:space="preserve">
-    <value>Détails Article</value>
+    <value />
     <comment>Hardcoded dans la vue PartialDetailsArticle</comment>
   </data>
   <data name="vHC_partTabMat_tabMatier" xml:space="preserve">
-    <value>Table des Matières</value>
+    <value />
     <comment>Hardcoded dans la vue PartialTableDesMatieres</comment>
   </data>
   <data name="vHC_supprim_quest" xml:space="preserve">
-    <value>Êtes-vous certain de vouloir supprimer l'article?</value>
+    <value />
     <comment>Hardcoded dans la vue supprimerArticle</comment>
   </data>
   <data name="ZHC_ajout" xml:space="preserve">
-    <value>Ajouter</value>
+    <value />
     <comment>Hardcoded généralement</comment>
   </data>
   <data name="ZHC_article" xml:space="preserve">
-    <value>Article</value>
+    <value />
     <comment>Hardcoded généralement</comment>
   </data>
   <data name="ZHC_enregist" xml:space="preserve">
-    <value>Enregistrer</value>
+    <value />
     <comment>Hardcoded généralement</comment>
   </data>
   <data name="ZHC_menu_conn" xml:space="preserve">
-    <value>Connexion</value>
+    <value />
     <comment>Hardcoded dans la vue Menu</comment>
   </data>
   <data name="ZHC_menu_dec" xml:space="preserve">
-    <value>Deconnexion</value>
+    <value />
     <comment>Hardcoded dans la vue Menu</comment>
   </data>
   <data name="ZHC_menu_ins" xml:space="preserve">
-    <value>Inscription</value>
+    <value />
     <comment>Hardcoded dans la vue Menu</comment>
   </data>
   <data name="ZHC_menu_prof" xml:space="preserve">
-    <value>Profil</value>
+    <value />
     <comment>Hardcoded dans la vue Menu</comment>
   </data>
   <data name="ZHC_modif" xml:space="preserve">
-    <value>Modifier</value>
+    <value />
     <comment>Hardcoded généralement</comment>
   </data>
   <data name="ZHC_Modif_retourPreced" xml:space="preserve">
-    <value>Retour page précédente</value>
+    <value />
     <comment>Hardcoded généralement</comment>
   </data>
   <data name="ZHC_retourAcc" xml:space="preserve">
-    <value>Retour à l'Accueuil</value>
+    <value />
     <comment>Hardcoded généralement</comment>
   </data>
   <data name="ZHC_suprim" xml:space="preserve">
-    <value>Supprimer</value>
+    <value />
     <comment>Hardcoded généralement</comment>
+  </data>
+  <data name="courriel" xml:space="preserve">
+    <value />
+    <comment>ViewModel connexion</comment>
+  </data>
+  <data name="ERR_courriel" xml:space="preserve">
+    <value />
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_courriel50" xml:space="preserve">
+    <value />
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_dejaExist" xml:space="preserve">
+    <value />
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_MDP" xml:space="preserve">
+    <value />
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_MDPCompare" xml:space="preserve">
+    <value />
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_nom" xml:space="preserve">
+    <value />
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_prenom" xml:space="preserve">
+    <value />
+    <comment>ViewModel</comment>
+  </data>
+  <data name="langue" xml:space="preserve">
+    <value />
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="MDPConfirmer" xml:space="preserve">
+    <value />
+    <comment>ViewModel ChangerMotDePasse</comment>
+  </data>
+  <data name="motDePass" xml:space="preserve">
+    <value />
+    <comment>ViewModel connexion</comment>
+  </data>
+  <data name="motDePassConfirm" xml:space="preserve">
+    <value />
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="nomFamille" xml:space="preserve">
+    <value />
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="nouvMotDePass" xml:space="preserve">
+    <value />
+    <comment>ViewModel ChangerMotDePasse</comment>
+  </data>
+  <data name="prenom" xml:space="preserve">
+    <value />
+    <comment>ViewModel Inscription</comment>
   </data>
 </root>

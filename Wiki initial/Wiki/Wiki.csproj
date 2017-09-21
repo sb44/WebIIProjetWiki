@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="CultureHelp\CultureHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -148,10 +149,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RessourceView.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="Ressource\RessourceView.esp.Designer.cs">
+    <Compile Include="Ressource\RessourceView.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RessourceView.esp.resx</DependentUpon>
+      <DependentUpon>RessourceView.es.resx</DependentUpon>
     </Compile>
     <Compile Include="Ressource\RessourceView.fr.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -238,9 +239,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RessourceView.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressource\RessourceView.esp.resx">
+    <EmbeddedResource Include="Ressource\RessourceView.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>RessourceView.esp.Designer.cs</LastGenOutput>
+      <LastGenOutput>RessourceView.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressource\RessourceView.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

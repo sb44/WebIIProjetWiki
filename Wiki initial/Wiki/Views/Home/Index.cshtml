@@ -19,7 +19,7 @@
 
             <div class="col-lg-12 text-center v-center">
                 @{if (Session.IsNewSession) {
-                        <h1>Bienvenue au Wiki!</h1>
+                        <h1>@Wiki.Ressource.RessourceView.vHC_Ind_bienvenu</h1>
                         <p class="lead">Sasha Howell Bouchard - Arash Amiri - Hai Qiang Xu</p>
                     } else {
                         <h1>Wiki!</h1>
@@ -40,7 +40,7 @@
     @*équivalence : *@
                     <form class="col-lg-12" method="post" action="/">
                         <div class="input-group input-group-lg col-sm-offset-1 col-sm-10">
-                            @Html.TextBox("Titre", titre, new { @class = "center-block form-control input-lg", placeholder = "Saisir un article ici" })
+                            @Html.TextBox(@Wiki.Ressource.RessourceView.Titre, titre, new { @class = "center-block form-control input-lg", placeholder = "Saisir un article ici" })
                             <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit" name="operation">GO</button></span>
                         </div>
                     </form>
@@ -54,11 +54,14 @@
 
     @{ if (ViewBag.TitreSaisieInexistant != null) {
                 <div class="alert alert-danger" role="alert">
-                    <b>Article inexistant!</b> Souhaitez-vous créer l'article "@ViewBag.TitreSaisieInexistant" ?  
+                    <b>@Wiki.Ressource.RessourceView.vHC_Ind_articleNull !</b> 
+                    @Wiki.Ressource.RessourceView.vHC_Ind_SouhaitCreArticle "@ViewBag.TitreSaisieInexistant" ?  
+                    
+                    
                 </div>
             // LIEN PERMETTANT DE CRÉER UN ARTICLE
             string titreSaisieInex = (string)ViewBag.TitreSaisieInexistant + "";
-            @Html.ActionLink("Créer cet article", "ajouter", "Home", new { titre = titreSaisieInex }, null)
+            @Html.ActionLink(@Wiki.Ressource.RessourceView.vHC_Ind_creerArticle, "ajouter", "Home", new { titre = titreSaisieInex }, null)
         }
     }
 

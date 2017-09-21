@@ -225,4 +225,64 @@
     <value>Quitar</value>
     <comment>Hardcoded généralement</comment>
   </data>
+  <data name="courriel" xml:space="preserve">
+    <value>Correo electrónico</value>
+    <comment>ViewModel connexion</comment>
+  </data>
+  <data name="ERR_courriel" xml:space="preserve">
+    <value>Por favor ingrese su dirección de correo electrónico!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_courriel50" xml:space="preserve">
+    <value>El correo electrónico no puede superar las 50 letras!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_dejaExist" xml:space="preserve">
+    <value>ya existe, por favor cambie otro!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_MDP" xml:space="preserve">
+    <value>La contraseña debe tener menos de 70 letras y más de 6 letras!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_MDPCompare" xml:space="preserve">
+    <value>las contraseñas no son lo mismo!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_nom" xml:space="preserve">
+    <value>Por favor ingrese su apellido!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="ERR_prenom" xml:space="preserve">
+    <value>Por favor ingrese su nombre!</value>
+    <comment>ViewModel</comment>
+  </data>
+  <data name="langue" xml:space="preserve">
+    <value>Lengua</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="MDPConfirmer" xml:space="preserve">
+    <value>Confirmar la contraseña</value>
+    <comment>ViewModel ChangerMotDePasse</comment>
+  </data>
+  <data name="motDePass" xml:space="preserve">
+    <value>Contraseña</value>
+    <comment>ViewModel connexion</comment>
+  </data>
+  <data name="motDePassConfirm" xml:space="preserve">
+    <value>Contraseña confirmada</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="nomFamille" xml:space="preserve">
+    <value>apellido</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="nouvMotDePass" xml:space="preserve">
+    <value>Nueva contraseña</value>
+    <comment>ViewModel ChangerMotDePasse</comment>
+  </data>
+  <data name="prenom" xml:space="preserve">
+    <value>Nombre de pila</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
 </root>

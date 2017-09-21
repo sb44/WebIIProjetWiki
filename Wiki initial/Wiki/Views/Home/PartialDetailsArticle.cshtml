@@ -1,7 +1,7 @@
 ﻿@model Wiki.Models.Biz.Article
 
 <div>
-    <h4>Détails Article</h4>
+    <h4>@Wiki.Ressource.RessourceView.vHC_partDet_artDetail</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -50,8 +50,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Modifier", "modifier", "Home", new { titre = Model.Titre }, null) |
-    @Html.ActionLink("Supprimer", "supprimerArticle", "Home", new { titre = Model.Titre }, null)
+    @Html.ActionLink(@Wiki.Ressource.RessourceView.ZHC_modif, "modifier", "Home", new { titre = Model.Titre }, null) |
+    @Html.ActionLink(@Wiki.Ressource.RessourceView.ZHC_suprim, "supprimerArticle", "Home", new { titre = Model.Titre }, null)
 
     @*@Html.ActionLink("Back to List", "Index")*@
 </p>

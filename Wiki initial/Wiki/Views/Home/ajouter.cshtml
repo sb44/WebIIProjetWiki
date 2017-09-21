@@ -14,14 +14,14 @@
     @Html.Action("PartialTableDesMatieres")  @*action va dans le controleur tandis que partial n'y va pas*@
 }
 
-<h2>Ajouter</h2>
+<h2>@Wiki.Ressource.RessourceView.ZHC_ajout</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Article</h4>
+        <h4>@Wiki.Ressource.RessourceView.ZHC_article</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -81,9 +81,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" name="operation" value="Apercu Html" class="btn btn-default" />
+                <input type="submit" name="operation" value=@Wiki.Ressource.RessourceView.vHC_Ajout_apercuHtml class="btn btn-default" />
                 <span> | </span>
-                <input type="submit" name="operation" value="Ajouter" class="btn btn-default" />
+                <input type="submit" name="operation" value=@Wiki.Ressource.RessourceView.ZHC_ajout class="btn btn-default" />
 
             </div>
         </div>
@@ -91,5 +91,5 @@
 }
 
 <div>
-    @Html.ActionLink("Retour à l'Accueuil", "Index")
+    @Html.ActionLink(@Wiki.Ressource.RessourceView.ZHC_retourAcc, "Index")
 </div>

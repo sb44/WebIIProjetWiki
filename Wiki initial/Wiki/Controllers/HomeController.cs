@@ -7,9 +7,64 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Wiki.Models.Biz; //aj sb
 using Wiki.Models.Biz.Interfaces;
+using Wiki.CultureHelp;
 
 namespace Wiki.Controllers {
     public class HomeController : Controller {
+
+        /// ////////////////////////////////////////////////////////////
+        /// 
+        /// Override méthode pour contrôler la session ( utilisé pour les langues)
+        ///
+        /// ////////////////////////////////////////////////////////////
+        protected override void ExecuteCore()
+        {
+            int culture = 0;
+            if (this.Session == null || this.Session["CurrentCulture"] == null)
+            {
+
+                int.TryParse(System.Configuration.ConfigurationManager.AppSettings["Culture"], out culture);
+                this.Session["CurrentCulture"] = culture;
+            }
+            else
+            {
+                culture = (int)this.Session["CurrentCulture"];
+            }
+            //  CultureHelper classe méthode 
+            CultureHelper.CurrentCulture = culture;
+
+            base.ExecuteCore();
+        }
+
+
+        /// <summary>
+        /// Action utilisé pour changer les langues
+        /// </summary>
+        public ActionResult ChangeCurrentCulture(int id)
+        {
+            //  
+            // Changer la culture courantpour cet utilisateur
+            //  
+            CultureHelper.CurrentCulture = id;
+            //  
+            // Mettre current culture dans la session HTTP.   
+            //  
+            Session["CurrentCulture"] = id;
+            //  
+            // retourner à la page précedente
+            //  
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        /// ////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////
+        /// ////////////////////////////////////////////////////////////
+        
+        protected override bool DisableAsyncSupport
+        {
+            get { return true; }
+        }
+
 
         //static Articles repo = new Articles();
         //static IList<Article> lstArticles = repo.GetArticles(); 

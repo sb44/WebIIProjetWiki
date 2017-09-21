@@ -10,9 +10,9 @@
     @Html.Action("PartialTableDesMatieres")  @*action va dans le controleur tandis que partial n'y va pas*@
 }
 
-<h2>Supprimer</h2>
+<h2>@Wiki.Ressource.RessourceView.ZHC_suprim</h2>
 
-<h3>Êtes-vous certain de vouloir supprimer l'article?</h3>
+<h3>@Wiki.Ressource.RessourceView.vHC_supprim_quest</h3>
 <div>
     <h4>Article</h4>
     <hr />
@@ -66,7 +66,7 @@
 
                 <div class="form-actions no-color">
             <input type="submit" value="Supprimer" class="btn btn-default" /> |
-            @Html.ActionLink("Retour page précédente", null, null, null, new { href = Request.UrlReferrer })
+            @Html.ActionLink(@Wiki.Ressource.RessourceView.ZHC_Modif_retourPreced, null, null, null, new { href = Request.UrlReferrer })
         </div>
     }
 </div>
