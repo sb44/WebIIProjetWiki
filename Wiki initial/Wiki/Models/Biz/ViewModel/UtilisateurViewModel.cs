@@ -105,7 +105,7 @@ namespace Wiki.Models.Biz {
             }
 
  
-            if (repo.FindUtilisateurByCourriel(value.ToString()) != null) {
+            if (value != null && repo.FindUtilisateurByCourriel(value.ToString()) != null) {
                 return new ValidationResult(validationContext.DisplayName + Wiki.Ressource.RessourceView.ERR_dejaExist);
             }
             return null;

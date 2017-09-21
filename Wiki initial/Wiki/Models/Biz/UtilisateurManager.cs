@@ -60,9 +60,7 @@ namespace Wiki.Models.Biz {
             UtilisateurDTO u = new UtilisateurDTO();
             try {
                 u = _utilisateurRepository.FindUtilisateurByCourriel(Courriel);
- //               string hash = PasswordHash.CreateHash(MDP);
-                bool a =  MDP == u.MDP ? true : false;
-                return a;
+                return PasswordHash.ValidatePassword(MDP, u.MDP);
             }  catch (System.Exception e) {
                 string Msg = e.Message;
                 return false;

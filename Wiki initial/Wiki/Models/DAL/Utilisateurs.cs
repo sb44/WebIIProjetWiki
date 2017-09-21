@@ -23,8 +23,7 @@ namespace Wiki.Models.DAL {
             SqlCommand sqlCmd = new SqlCommand("AddUtilisateur", connexion);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.Add("@Courriel", SqlDbType.NVarChar).Value = Courriel;
-//            sqlCmd.Parameters.Add("@MDP", SqlDbType.NVarChar).Value = PasswordHash.CreateHash(MDP);
-            sqlCmd.Parameters.Add("@MDP", SqlDbType.NVarChar).Value = MDP;
+            sqlCmd.Parameters.Add("@MDP", SqlDbType.NVarChar).Value = PasswordHash.CreateHash(MDP);
             sqlCmd.Parameters.Add("@Prenom", SqlDbType.NVarChar).Value = Prenom;
             sqlCmd.Parameters.Add("@NomFamille", SqlDbType.NVarChar).Value = NomDeFamille;
             sqlCmd.Parameters.Add("@Langue", SqlDbType.NVarChar).Value = Langue;
@@ -106,8 +105,7 @@ namespace Wiki.Models.DAL {
             SqlCommand sqlCmd = new SqlCommand("UpdateMotDePasse", connexion);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.Add("@Id", SqlDbType.Int).Value = Id;
-            // sqlCmd.Parameters.Add("@nouveauMDP", SqlDbType.NVarChar).Value = PasswordHash.CreateHash(NouveauMDP);
-            sqlCmd.Parameters.Add("@nouveauMDP", SqlDbType.NVarChar).Value = NouveauMDP;
+            sqlCmd.Parameters.Add("@nouveauMDP", SqlDbType.NVarChar).Value = PasswordHash.CreateHash(NouveauMDP);
             try {
                 connexion.Open();
                 sqlCmd.ExecuteNonQuery();

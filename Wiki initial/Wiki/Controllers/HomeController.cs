@@ -116,6 +116,14 @@ namespace Wiki.Controllers {
             //ViewBag.Prenom = fullName.Split(' ')[0];
             //ViewBag.Nom = fullName.Split(' ')[1];
 
+
+
+            if (!User.Identity.IsAuthenticated)               /////////////////////// Ajout par Haiqiang XU 
+            {                  
+                return RedirectToAction("Connexion", "Account");   
+            }
+
+
             ViewBag.TitreParDefault = titre; // titre par défaut dans le cas d'une Saisie d'un article inexistant au clavier:
             return View();
         }
@@ -157,6 +165,12 @@ namespace Wiki.Controllers {
         [Route("home/modifier/{titre}")]
         public ActionResult modifier(string titre) {
             // Va faire afficher la page d'erreur par défault Error.cshtml si le titre de l'article n'existe pas..
+
+            if (!User.Identity.IsAuthenticated)               /////////////////////// Ajout par Haiqiang XU 
+            {
+                return RedirectToAction("Connexion", "Account");
+            }
+
             return View(articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
         }
 
@@ -185,6 +199,12 @@ namespace Wiki.Controllers {
         [Route("home/supprimer/{titre}")]
         public ActionResult supprimerArticle(string titre) {
             // Va faire afficher la page d'erreur par défault Error.cshtml si le titre de l'article n'existe pas..
+
+            if (!User.Identity.IsAuthenticated)               /////////////////////// Ajout par Haiqiang XU 
+            {
+                return RedirectToAction("Connexion", "Account");
+            }
+
             return View(articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
         }
 
