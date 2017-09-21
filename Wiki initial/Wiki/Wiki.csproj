@@ -138,6 +138,26 @@
     <Compile Include="Models\DAL\Articles.cs" />
     <Compile Include="Models\DAL\Utilisateurs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ressource\RessourceView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RessourceView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ressource\RessourceView.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RessourceView.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ressource\RessourceView.esp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RessourceView.esp.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ressource\RessourceView.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RessourceView.fr.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\WikiSQL.sql" />
@@ -212,6 +232,24 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ressource\RessourceView.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RessourceView.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressource\RessourceView.esp.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RessourceView.esp.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressource\RessourceView.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RessourceView.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressource\RessourceView.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RessourceView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -240,3 +240,10 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/Wiki initial/Wiki/Scripts/jquery-3.2.1.slim.min.map
+/Wiki initial/Wiki/Scripts/jquery-3.2.1.slim.min.js
+/Wiki initial/Wiki/Scripts/jquery-3.2.1.slim.js
+/Wiki initial/Wiki/Scripts/jquery-3.2.1.min.map
+/Wiki initial/Wiki/Scripts/jquery-3.2.1.min.js
+/Wiki initial/Wiki/Scripts/jquery-3.2.1.js
+/Wiki initial/Wiki/Scripts/jquery-3.2.1-vsdoc.js
