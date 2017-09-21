@@ -25,40 +25,25 @@
                     <li>@Html.ActionLink(@Wiki.Ressource.RessourceView.ZHC_menu_conn, "Connexion", "Account", new { ReturnUrl = this.Request.RawUrl }, null)</li>
                 }
             </ul>
-        </div>
-        <div class="nav navbar-nav navbar-right">
-            <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Langues
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    @{
-                        CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-                        <ul>
-                            <li><a class="dropdown-item" href="/Home/ChangeCurrentCulture/0">Francais</a></li> 
-                            <li><a class="dropdown-item" href="/Home/ChangeCurrentCulture/1">Anglais</a></li>
-                            <li><a class="dropdown-item" href="/Home/ChangeCurrentCulture/2">Espagnol</a></li>
-                        </ul>
-                    }
-                </div>
+            <div class="nav navbar-nav navbar-right">
+               <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-globe"></span>  Langues  </a>
+                        @{
+                            CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/Home/ChangeCurrentCulture/0">Francais</a></li>
+                                <li class="divider"></li>
+                                <li><a class="dropdown-item" href="/Home/ChangeCurrentCulture/1">Anglais</a></li>
+                                <li class="divider"></li>
+                                <li><a class="dropdown-item" href="/Home/ChangeCurrentCulture/2">Espagnol</a></li>
+                            </ul>
+                        }
+                    </li>
+             
             </div>
+
+
+
         </div>
-        @*@{
-                CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-                <ul class="nav navbar-nav">
-                    <li><a href="/Home/ChangeCurrentCulture/0">Francais</a></li>
-
-                    <li><a href="/Home/ChangeCurrentCulture/1">Anglais</a></li>
-
-                    <li><a href="/Home/ChangeCurrentCulture/2">Espagnol</a></li>
-
-                </ul>
-            }*@
-
-
-
-
-
     </div>
 </div>
