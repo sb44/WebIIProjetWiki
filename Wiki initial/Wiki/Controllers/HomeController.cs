@@ -134,7 +134,8 @@ namespace Wiki.Controllers {
         public ActionResult ajouter(Article a, string operation) {
             switch (operation) {
                 case "Ajouter":
-
+                case "Add":
+                case "Añadir":
                     // Valider que le titre de l'article n'existe pas déjà...
                     if (articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(a.Titre)) != null)
                         ModelState.AddModelError("Titre", "Ce titre est déjà existant, veuillez réessayer avec un autre titre.");
@@ -154,7 +155,9 @@ namespace Wiki.Controllers {
                         return View(a);
                     }
                     break;
-                case "Apercu Html":
+                case "Html":
+                case "Apercu":
+                case "Contenido":
                     ViewBag.ApercuContenu = true;
                     break;
             }
@@ -180,6 +183,9 @@ namespace Wiki.Controllers {
         public ActionResult modifier(Article a, string operation) {
             switch (operation) {
                 case "Enregistrer":
+                case "Save":
+                case "Registro":
+
                     if (ModelState.IsValid) {
                         articleManager.Update(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
                         //if (repo.Update(a) != 0)
@@ -188,7 +194,10 @@ namespace Wiki.Controllers {
                     } else
                         return View(a);
                     break;
-                case "Apercu Html":
+
+                case "Html":
+                case "Apercu":
+                case "Contenido":
                     ViewBag.ApercuContenu = true;
                     break;
             }
