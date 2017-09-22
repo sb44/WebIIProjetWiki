@@ -111,11 +111,6 @@ namespace Wiki.Controllers {
         [Route("home/ajouter/{titre}")]
         public ActionResult ajouter(string titre) //ajouter article dans un blog
         {
-            //User.Identity.Name est courriel
-            //string fullName = Utilisateur.getFullNameByUserName(User.Identity.Name);
-            //ViewBag.Prenom = fullName.Split(' ')[0];
-            //ViewBag.Nom = fullName.Split(' ')[1];
-
 
 
             if (!User.Identity.IsAuthenticated)               /////////////////////// Ajout par Haiqiang XU 
@@ -148,9 +143,6 @@ namespace Wiki.Controllers {
 
                         return RedirectToAction("Index", "Home", new { titre = a.Titre }); // pour displayer la nouvelle article créé..
                     } else {
-                        //string fullName = Utilisateur.getFullNameByUserName(User.Identity.Name);
-                        //ViewBag.Prenom = fullName.Split(' ')[0];
-                        //ViewBag.Nom = fullName.Split(' ')[1];
 
                         return View(a);
                     }
@@ -220,10 +212,6 @@ namespace Wiki.Controllers {
         [HttpPost]
         [Route("home/supprimer/{titre}")]
         public ActionResult supprimerArticleConfirmation(string titre) {
-            //Article.supprimer(Id);
-            //Utilisateur u = Utilisateur.getUtilisateurParName(User.Identity.Name);
-            //if (repo.Delete(titre) != 0)
-            //    articleManager.lstArticles.Remove(articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
             articleManager.Delete(titre);
             return RedirectToAction("Index", "Home");
         }
