@@ -22,25 +22,25 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NomFamille, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.NomFamille, htmlAttributes: new { @class = "control-label col-xs-12 col-sm-2" })
+            <div class="col-xs-10 col-sm-8">
                 @Html.EditorFor(model => model.NomFamille, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NomFamille, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Prenom, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.Prenom, htmlAttributes: new { @class = "control-label col-xs-12 col-sm-2" })
+            <div class="col-xs-10 col-sm-8">
                 @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Langue, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Langue, Model.SelectionLangue, new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Langue, htmlAttributes: new { @class = "control-label col-xs-12 col-sm-2" })
+            <div class="col-xs-6 col-sm-4">
+                @Html.DropDownListFor(model => model.Langue, Model.SelectionLangue, new { @class = "form-control" })
             </div>
         </div>
 
