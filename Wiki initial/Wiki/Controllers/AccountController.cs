@@ -49,7 +49,14 @@ namespace Wiki.Controllers {
                 return View(model);
             } else {
                 FormsAuthentication.SetAuthCookie(model.Courriel, false);
-               // Users.currentUser = Users.GetUserByEmail(email);
+                // Users.currentUser = Users.GetUserByEmail(email);
+
+                //ajout sasha
+                var uDto = utilisateurManager.FindUtilisateurByCourriel(model.Courriel);
+                this.Session["CurrentCulture"] = (uDto.Langue.ToString().ToLower().IndexOf("fr") != -1) ? 0 :
+                                                 (uDto.Langue.ToString().ToLower().IndexOf("en") != -1) ? 1 :
+                                                 (uDto.Langue.ToString().ToLower().IndexOf("es") != -1) ? 2 : 99; // 99 => aucune langue 
+
                 if (ReturnUrl == "") {
                     return RedirectToAction("Index", "Home");
                 } else {
@@ -74,6 +81,12 @@ namespace Wiki.Controllers {
         public ActionResult Inscription(InscriptionViewModel model) {
             if (ModelState.IsValid) {
                 utilisateurManager.AddUtilisateur(model.Courriel, model.MDP, model.Prenom, model.NomFamille, model.Langue);
+
+                //ajout sasha 
+                this.Session["CurrentCulture"] = (model.Langue.ToString().ToLower().IndexOf("fr") != -1) ? 0 :
+                                                 (model.Langue.ToString().ToLower().IndexOf("en") != -1) ? 1 :
+                                                 (model.Langue.ToString().ToLower().IndexOf("es") != -1) ? 2 : 99; // 99 => aucune langue 
+
                 return RedirectToAction("Index", "Home");
             }
             // Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
@@ -99,6 +112,12 @@ namespace Wiki.Controllers {
         public ActionResult ModifierProfil(ChangerProfilViewModel model, string ReturnUrl) {
             ViewBag.ReturnUrl = ReturnUrl;
             utilisateurManager.UpdateUtilisateur(model.Prenom, model.NomFamille, model.Id, model.Langue);
+
+            //ajout sasha 
+            this.Session["CurrentCulture"] = (model.Langue.ToString().ToLower().IndexOf("fr") != -1) ? 0 :
+                                             (model.Langue.ToString().ToLower().IndexOf("en") != -1) ? 1 :
+                                             (model.Langue.ToString().ToLower().IndexOf("es") != -1) ? 2 : 99; // 99 => aucune langue 
+
             return Redirect(ReturnUrl);
         }
 

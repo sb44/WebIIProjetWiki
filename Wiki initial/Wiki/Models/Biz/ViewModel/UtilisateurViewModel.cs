@@ -16,6 +16,7 @@ namespace Wiki.Models.Biz {
         [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 letters et plus que 6 lesttres!")]
         [Display(Name = "motDePass", ResourceType = typeof(RessourceView))]
         public string MDP { get; set; }
+
     }
 
     public class InscriptionViewModel {
