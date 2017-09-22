@@ -44,7 +44,7 @@
 
         @{ if (ViewBag.ApercuContenu == true) {
                 <div class="form-group">
-                    @Html.Label("Apercu Contenu Html", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label(Wiki.Ressource.RessourceView.vHC_Ajout_apercuContHtml, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @* APERCU DE L'ARTICLE EN DESSOUS DE LA ZONE D'ÉDITION *@
                         @Html.Raw(HttpUtility.HtmlDecode(Model.Contenu))
@@ -81,12 +81,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" name="operation" value=@Wiki.Ressource.RessourceView.vHC_Ajout_apercuHtml class="btn btn-default" />
+                @*<input type="submit" name="operation" value=@Wiki.Ressource.RessourceView.vHC_Ajout_apercuHtml class="btn btn-default" />
                 <span> | </span>
-                <input type="submit" name="operation" value=@Wiki.Ressource.RessourceView.ZHC_ajout class="btn btn-default" />
-                @*<button type="submit" name="operation" value="Apercu Html">@Wiki.Ressource.RessourceView.vHC_Ajout_apercuHtml</button>
+                <input type="submit" name="operation" value=@Wiki.Ressource.RessourceView.ZHC_ajout class="btn btn-default" />*@
+                <button type="submit" name="operation" value="Apercu Html">@Wiki.Ressource.RessourceView.vHC_Ajout_apercuHtml</button>
                 <span> | </span>
-                <button type="submit" name="operation" value="Ajouter">@Wiki.Ressource.RessourceView.ZHC_ajout</button>*@
+                <button type="submit" name="operation" value="Ajouter">@Wiki.Ressource.RessourceView.ZHC_ajout</button>
             </div>
         </div>
     </div>

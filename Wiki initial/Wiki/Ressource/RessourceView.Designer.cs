@@ -117,6 +117,15 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string ERR_HC_Home_titre {
+            get {
+                return ResourceManager.GetString("ERR_HC_Home_titre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string ERR_MDP {
             get {
                 return ResourceManager.GetString("ERR_MDP", resourceCulture);

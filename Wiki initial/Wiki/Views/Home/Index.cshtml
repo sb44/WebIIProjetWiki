@@ -27,10 +27,7 @@
 
                     }
                 } 
-
                 <br>
-                    
-
 @*@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "col-lg-12" })) {
         <div class="input-group input-group-lg col-sm-offset-1 col-sm-10">
             @Html.TextBox("Titre", titre, new { @class = "center-block form-control input-lg", placeholder = "Saisir un article ici" })
@@ -51,7 +48,6 @@
         <br />
         <br />
     </div>
-
     @{ if (ViewBag.TitreSaisieInexistant != null) {
                 <div class="alert alert-danger" role="alert">
                     <b>@Wiki.Ressource.RessourceView.vHC_Ind_articleNull !</b> 

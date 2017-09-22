@@ -138,7 +138,7 @@ namespace Wiki.Controllers {
                 case "Añadir":
                     // Valider que le titre de l'article n'existe pas déjà...
                     if (articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(a.Titre)) != null)
-                        ModelState.AddModelError("Titre", "Ce titre est déjà existant, veuillez réessayer avec un autre titre.");
+                        ModelState.AddModelError("Titre", Ressource.RessourceView.ERR_HC_Home_titre);
 
                     if (ModelState.IsValid) {
 

@@ -313,6 +313,10 @@
     <value />
     <comment>Hardcode dans la vue connexion</comment>
   </data>
+  <data name="ERR_HC_Home_titre" xml:space="preserve">
+    <value />
+    <comment>Hardcoded dans le controleur HOME</comment>
+  </data>
   <data name="ZHC_modifMDP_backtolist" xml:space="preserve">
     <value />
     <comment>Hardcoded dans la vue modifier MDP</comment>

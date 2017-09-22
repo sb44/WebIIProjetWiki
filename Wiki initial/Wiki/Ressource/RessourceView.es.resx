@@ -313,6 +313,10 @@
     <value>si no tiene una cuenta.</value>
     <comment>Hardcode dans la vue connexion</comment>
   </data>
+  <data name="ERR_HC_Home_titre" xml:space="preserve">
+    <value>Este título ya está disponible, inténtalo de nuevo con otro título.</value>
+    <comment>Hardcoded dans le controleur HOME</comment>
+  </data>
   <data name="ZHC_modifMDP_backtolist" xml:space="preserve">
     <value>Volver a la lista</value>
     <comment>Hardcoded dans la vue modifier MDP</comment>
@@ -322,7 +326,7 @@
     <comment>Hardcoded dans la vue modifier Profil</comment>
   </data>
   <data name="ZHC_mProfil_modifMDP" xml:space="preserve">
-    <value />
+    <value>Cambiar contraseña</value>
     <comment>Hardcoded dans la vue modifier profil</comment>
   </data>
 </root>

@@ -305,6 +305,14 @@
     <value>si vous n'avez pas de compte.</value>
     <comment>Hardcode dans la vue connexion</comment>
   </data>
+  <data name="ERR_HC_Home_titre" xml:space="preserve">
+    <value>Ce titre est déjà existant, veuillez réessayer avec un autre titre.</value>
+    <comment>Hardcoded dans le controleur HOME</comment>
+  </data>
+  <data name="GO" xml:space="preserve">
+    <value>Aller</value>
+    <comment>bouton GO Index</comment>
+  </data>
   <data name="ZHC_modifMDP_backtolist" xml:space="preserve">
     <value>Retourner à la liste</value>
     <comment>Hardcoded dans la vue modifier MDP</comment>
@@ -314,7 +322,7 @@
     <comment>Hardcoded dans la vue modifier Profil</comment>
   </data>
   <data name="ZHC_mProfil_modifMDP" xml:space="preserve">
-    <value />
+    <value>Modifier mot de passe</value>
     <comment>Hardcoded dans la vue modifier profil</comment>
   </data>
 </root>
