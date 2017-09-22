@@ -8,7 +8,7 @@ using Wiki.Models.Biz.DTO;
 using Wiki.Models.Biz.Interfaces;
 
 namespace Wiki.Controllers {
-    public class AccountController : Controller
+    public class AccountController : HomeController
     {
         private static readonly IUtilisateurRepository utilisateurRepository = new Models.DAL.Utilisateurs();
         private readonly IUtilisateurRepository _utilisateurRepository; 

@@ -309,4 +309,20 @@
     <value>Language</value>
     <comment>langue!!</comment>
   </data>
+  <data name="ZHC_connexion_compte" xml:space="preserve">
+    <value>if you do not have an account.</value>
+    <comment>Hardcode dans la vue connexion</comment>
+  </data>
+  <data name="ZHC_modifMDP_backtolist" xml:space="preserve">
+    <value>Back to list</value>
+    <comment>Hardcoded dans la vue modifier MDP</comment>
+  </data>
+  <data name="ZHC_modifProfil" xml:space="preserve">
+    <value>Edit Profile</value>
+    <comment>Hardcoded dans la vue modifier Profil</comment>
+  </data>
+  <data name="ZHC_mProfil_modifMDP" xml:space="preserve">
+    <value>Change password</value>
+    <comment>Hardcoded dans la vue modifier profil</comment>
+  </data>
 </root>

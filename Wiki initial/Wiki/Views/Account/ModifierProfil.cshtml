@@ -8,7 +8,7 @@
     @*@Html.Action("TableDesMatieres", "Home")*@
     @Html.Action("PartialTableDesMatieres", "Home")  @*action va dans le controleur tandis que partial n'y va pas*@
 }
-<h2>ModifierProfile</h2>
+<h2>@Wiki.Ressource.RessourceView.ZHC_modifProfil</h2>
 
 
 @using (Html.BeginForm())
@@ -50,7 +50,7 @@
             </div>
         </div>
     </div>
-    <div>@Html.ActionLink("Modifier mot de passe", "ModifierMDP", "Account", new { Id = Model.Id, ReturnUrl = this.Request.RawUrl }, null)</div>
+    <div>@Html.ActionLink(Wiki.Ressource.RessourceView.ZHC_mProfil_modifMDP, "ModifierMDP", "Account", new { Id = Model.Id, ReturnUrl = this.Request.RawUrl }, null)</div>
     <input type="hidden" name="idAuthor" value=@ViewBag.ReturnUrl>
 }
 

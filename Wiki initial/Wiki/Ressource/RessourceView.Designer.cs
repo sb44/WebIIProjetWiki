@@ -378,6 +378,15 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string ZHC_connexion_compte {
+            get {
+                return ResourceManager.GetString("ZHC_connexion_compte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string ZHC_enregist {
             get {
                 return ResourceManager.GetString("ZHC_enregist", resourceCulture);
@@ -471,6 +480,33 @@ namespace Wiki.Ressource {
         public static string ZHC_Modif_retourPreced {
             get {
                 return ResourceManager.GetString("ZHC_Modif_retourPreced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ZHC_modifMDP_backtolist {
+            get {
+                return ResourceManager.GetString("ZHC_modifMDP_backtolist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ZHC_modifProfil {
+            get {
+                return ResourceManager.GetString("ZHC_modifProfil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ZHC_mProfil_modifMDP {
+            get {
+                return ResourceManager.GetString("ZHC_mProfil_modifMDP", resourceCulture);
             }
         }
         

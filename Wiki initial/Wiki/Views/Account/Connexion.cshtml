@@ -9,7 +9,7 @@
     @*@Html.Action("TableDesMatieres", "Home")*@
     @Html.Action("PartialTableDesMatieres", "Home")  @*action va dans le controleur tandis que partial n'y va pas*@
 }
-<h2>Connexion</h2>
+<h2>@Wiki.Ressource.RessourceView.ZHC_menu_conn</h2>
 
 
 <div class="row">
@@ -44,7 +44,7 @@
                 </div>
                 <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
                 <p>
-                    @Html.ActionLink("Inscription", "Inscription") si vous n'avez pas de compte.
+                    @Html.ActionLink(Wiki.Ressource.RessourceView.ZHC_menu_ins, "Inscription") @Wiki.Ressource.RessourceView.ZHC_connexion_compte
                 </p>
             }
         </section>
