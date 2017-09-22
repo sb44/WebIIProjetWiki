@@ -285,4 +285,28 @@
     <value>Nombre de pila</value>
     <comment>ViewModel Inscription</comment>
   </data>
+  <data name="GO" xml:space="preserve">
+    <value>IR</value>
+    <comment>bouton GO Index</comment>
+  </data>
+  <data name="vHC_Ind_placeHolder" xml:space="preserve">
+    <value>Introduzca el nombre del artículo aquí</value>
+    <comment>Hardcoded dans la vue Index</comment>
+  </data>
+  <data name="ZHC_lang_en" xml:space="preserve">
+    <value>Inglés</value>
+    <comment>nom de langue anglais</comment>
+  </data>
+  <data name="ZHC_lang_es" xml:space="preserve">
+    <value>Español</value>
+    <comment>nom de langue espagnol</comment>
+  </data>
+  <data name="ZHC_lang_fr" xml:space="preserve">
+    <value>Francés</value>
+    <comment>nom de langue francais</comment>
+  </data>
+  <data name="ZHC_menu_langue" xml:space="preserve">
+    <value>Lengua</value>
+    <comment>langue!!</comment>
+  </data>
 </root>

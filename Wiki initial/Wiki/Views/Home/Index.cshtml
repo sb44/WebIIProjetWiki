@@ -40,8 +40,8 @@
     @*équivalence : *@
                     <form class="col-lg-12" method="post" action="/">
                         <div class="input-group input-group-lg col-sm-offset-1 col-sm-10">
-                            @Html.TextBox(@Wiki.Ressource.RessourceView.Titre, titre, new { @class = "center-block form-control input-lg", placeholder = "Saisir un article ici" })
-                            <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit" name="operation">GO</button></span>
+                            @Html.TextBox("Titre", titre, new { @class = "center-block form-control input-lg", placeholder = Wiki.Ressource.RessourceView.vHC_Ind_placeHolder })
+                            <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit" name="operation">@Wiki.Ressource.RessourceView.GO</button></span>
                         </div>
                     </form>
             </div>
@@ -56,8 +56,6 @@
                 <div class="alert alert-danger" role="alert">
                     <b>@Wiki.Ressource.RessourceView.vHC_Ind_articleNull !</b> 
                     @Wiki.Ressource.RessourceView.vHC_Ind_SouhaitCreArticle "@ViewBag.TitreSaisieInexistant" ?  
-                    
-                    
                 </div>
             // LIEN PERMETTANT DE CRÉER UN ARTICLE
             string titreSaisieInex = (string)ViewBag.TitreSaisieInexistant + "";

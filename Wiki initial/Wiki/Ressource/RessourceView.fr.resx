@@ -285,4 +285,20 @@
     <value>Prénom</value>
     <comment>ViewModel Inscription</comment>
   </data>
+  <data name="vHC_Ind_placeHolder" xml:space="preserve">
+    <value>Saisir nom de l'article ici</value>
+    <comment>Hardcoded dans la vue Index</comment>
+  </data>
+  <data name="ZHC_lang_en" xml:space="preserve">
+    <value>Anglais</value>
+    <comment>nom de langue anglais</comment>
+  </data>
+  <data name="ZHC_lang_es" xml:space="preserve">
+    <value>espagnol</value>
+    <comment>nom de langue espagnol</comment>
+  </data>
+  <data name="ZHC_lang_fr" xml:space="preserve">
+    <value>Français</value>
+    <comment>nom de langue francais</comment>
+  </data>
 </root>

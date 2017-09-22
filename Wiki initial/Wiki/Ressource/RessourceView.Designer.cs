@@ -153,6 +153,15 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string GO {
+            get {
+                return ResourceManager.GetString("GO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string IdContributeur {
             get {
                 return ResourceManager.GetString("IdContributeur", resourceCulture);
@@ -306,6 +315,15 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string vHC_Ind_placeHolder {
+            get {
+                return ResourceManager.GetString("vHC_Ind_placeHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string vHC_Ind_SouhaitCreArticle {
             get {
                 return ResourceManager.GetString("vHC_Ind_SouhaitCreArticle", resourceCulture);
@@ -369,6 +387,33 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string ZHC_lang_en {
+            get {
+                return ResourceManager.GetString("ZHC_lang_en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ZHC_lang_es {
+            get {
+                return ResourceManager.GetString("ZHC_lang_es", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ZHC_lang_fr {
+            get {
+                return ResourceManager.GetString("ZHC_lang_fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string ZHC_menu_conn {
             get {
                 return ResourceManager.GetString("ZHC_menu_conn", resourceCulture);
@@ -390,6 +435,15 @@ namespace Wiki.Ressource {
         public static string ZHC_menu_ins {
             get {
                 return ResourceManager.GetString("ZHC_menu_ins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ZHC_menu_langue {
+            get {
+                return ResourceManager.GetString("ZHC_menu_langue", resourceCulture);
             }
         }
         
