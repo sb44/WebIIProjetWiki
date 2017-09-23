@@ -307,11 +307,23 @@
   </data>
   <data name="ERR_courriel_invalide" xml:space="preserve">
     <value>Courriel invalide!</value>
-    <comment>ViewModel Connexion</comment>
+    <comment>ViewModel Inscription</comment>
   </data>
   <data name="ERR_HC_Home_titre" xml:space="preserve">
     <value>Ce titre est déjà existant, veuillez réessayer avec un autre titre.</value>
     <comment>Hardcoded dans le controleur HOME</comment>
+  </data>
+  <data name="ERR_MDP_entree" xml:space="preserve">
+    <value>Veuillez entrer le mot de passe!</value>
+    <comment>ViewModel connexion</comment>
+  </data>
+  <data name="ERR_nom50" xml:space="preserve">
+    <value>Nom de famille ne peut pas depasser 50 lettres!</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="ERR_prenom50" xml:space="preserve">
+    <value>Prenom ne peut pas depasser 50 lettres!</value>
+    <comment>ViewModel Inscription</comment>
   </data>
   <data name="GO" xml:space="preserve">
     <value>Aller</value>

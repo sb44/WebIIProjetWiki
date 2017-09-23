@@ -144,6 +144,15 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string ERR_MDP_entree {
+            get {
+                return ResourceManager.GetString("ERR_MDP_entree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string ERR_MDPCompare {
             get {
                 return ResourceManager.GetString("ERR_MDPCompare", resourceCulture);

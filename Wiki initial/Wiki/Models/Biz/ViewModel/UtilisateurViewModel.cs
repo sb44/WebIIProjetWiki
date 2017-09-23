@@ -17,7 +17,9 @@ namespace Wiki.Models.Biz {
         public string Courriel { set; get; }
 
         [DataType(DataType.Password)]
-        [Required, StringLength(70, MinimumLength = 6,
+        [Required(
+            ErrorMessageResourceName = "ERR_MDP_entree", ErrorMessageResourceType = typeof(RessourceView))
+            , StringLength(70, MinimumLength = 6,
           ErrorMessageResourceName = "ERR_MDP", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "motDePass", ResourceType = typeof(RessourceView))]
         public string MDP { get; set; }

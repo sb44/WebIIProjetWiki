@@ -242,7 +242,7 @@
     <comment>ViewModel</comment>
   </data>
   <data name="ERR_MDP" xml:space="preserve">
-    <value>assword must be less than 70 characters and more than 6 characters!</value>
+    <value>password must be less than 70 characters and more than 6 characters!</value>
     <comment>ViewModel</comment>
   </data>
   <data name="ERR_MDPCompare" xml:space="preserve">
@@ -320,6 +320,18 @@
   <data name="ERR_HC_Home_titre" xml:space="preserve">
     <value>This title is already available, please try again with another title.</value>
     <comment>Hardcoded dans le controleur HOME</comment>
+  </data>
+  <data name="ERR_MDP_entree" xml:space="preserve">
+    <value>Please enter password !</value>
+    <comment>ViewModel connexion</comment>
+  </data>
+  <data name="ERR_nom50" xml:space="preserve">
+    <value>Last name cannot exceed 50 characters</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="ERR_prenom50" xml:space="preserve">
+    <value>First name cannot exceed 50 characters</value>
+    <comment>ViewModel Inscription</comment>
   </data>
   <data name="ZHC_modifMDP_backtolist" xml:space="preserve">
     <value>Back to list</value>

@@ -321,6 +321,10 @@
     <value>Este título ya está disponible, inténtalo de nuevo con otro título.</value>
     <comment>Hardcoded dans le controleur HOME</comment>
   </data>
+  <data name="ERR_MDP_entree" xml:space="preserve">
+    <value>Por favor ingrese su contraseña!</value>
+    <comment>ViewModel connexion</comment>
+  </data>
   <data name="ERR_nom50" xml:space="preserve">
     <value>El apellido no puede exceder las 50 letras!</value>
     <comment>ViewModel Inscription</comment>
