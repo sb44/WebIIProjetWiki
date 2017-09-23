@@ -53,9 +53,10 @@ namespace Wiki.Controllers {
 
                 //ajout sasha
                 var uDto = utilisateurManager.FindUtilisateurByCourriel(model.Courriel);
-                this.Session["CurrentCulture"] = (uDto.Langue.ToString().ToLower().IndexOf("fr") != -1) ? 0 :
-                                                 (uDto.Langue.ToString().ToLower().IndexOf("en") != -1) ? 1 :
-                                                 (uDto.Langue.ToString().ToLower().IndexOf("es") != -1) ? 2 : 99; // 99 => aucune langue 
+                var langCookie = (uDto.Langue.ToString().ToLower().IndexOf("fr") != -1) ? new HttpCookie("lang", "0") { HttpOnly = true } :
+                                 (uDto.Langue.ToString().ToLower().IndexOf("en") != -1) ? new HttpCookie("lang", "1") { HttpOnly = true } :
+                                 (uDto.Langue.ToString().ToLower().IndexOf("es") != -1) ? new HttpCookie("lang", "2") { HttpOnly = true } : new HttpCookie("lang", "0") { HttpOnly = true };
+                Response.AppendCookie(langCookie);
 
                 if (ReturnUrl == "") {
                     return RedirectToAction("Index", "Home");
@@ -83,9 +84,10 @@ namespace Wiki.Controllers {
                 utilisateurManager.AddUtilisateur(model.Courriel, model.MDP, model.Prenom, model.NomFamille, model.Langue);
 
                 //ajout sasha 
-                this.Session["CurrentCulture"] = (model.Langue.ToString().ToLower().IndexOf("fr") != -1) ? 0 :
-                                                 (model.Langue.ToString().ToLower().IndexOf("en") != -1) ? 1 :
-                                                 (model.Langue.ToString().ToLower().IndexOf("es") != -1) ? 2 : 99; // 99 => aucune langue 
+                var langCookie = (model.Langue.ToString().ToLower().IndexOf("fr") != -1) ? new HttpCookie("lang", "0") { HttpOnly = true } :
+                                 (model.Langue.ToString().ToLower().IndexOf("en") != -1) ? new HttpCookie("lang", "1") { HttpOnly = true } :
+                                 (model.Langue.ToString().ToLower().IndexOf("es") != -1) ? new HttpCookie("lang", "2") { HttpOnly = true } : new HttpCookie("lang", "0") { HttpOnly = true };
+                Response.AppendCookie(langCookie);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -110,15 +112,22 @@ namespace Wiki.Controllers {
 
         [HttpPost]
         public ActionResult ModifierProfil(ChangerProfilViewModel model, string ReturnUrl) {
+
+            if (ModelState.IsValid) {
+                utilisateurManager.UpdateUtilisateur(model.Prenom, model.NomFamille, model.Id, model.Langue);
+
+                //ajout sasha 
+                var langCookie = (model.Langue.ToString().ToLower().IndexOf("fr") != -1) ? new HttpCookie("lang", "0") { HttpOnly = true } :
+                                 (model.Langue.ToString().ToLower().IndexOf("en") != -1) ? new HttpCookie("lang", "1") { HttpOnly = true } :
+                                 (model.Langue.ToString().ToLower().IndexOf("es") != -1) ? new HttpCookie("lang", "2") { HttpOnly = true } : new HttpCookie("lang", "0") { HttpOnly = true };
+                Response.AppendCookie(langCookie);
+
+                return Redirect(ReturnUrl);
+            }
+
             ViewBag.ReturnUrl = ReturnUrl;
-            utilisateurManager.UpdateUtilisateur(model.Prenom, model.NomFamille, model.Id, model.Langue);
-
-            //ajout sasha 
-            this.Session["CurrentCulture"] = (model.Langue.ToString().ToLower().IndexOf("fr") != -1) ? 0 :
-                                             (model.Langue.ToString().ToLower().IndexOf("en") != -1) ? 1 :
-                                             (model.Langue.ToString().ToLower().IndexOf("es") != -1) ? 2 : 99; // 99 => aucune langue 
-
-            return Redirect(ReturnUrl);
+            model.SelectionLangue = new SelectList(dic, "Key", "Value");
+            return View(model);
         }
 
         public ActionResult ModifierMDP(int Id, string ReturnUrl) {
@@ -130,9 +139,14 @@ namespace Wiki.Controllers {
 
         [HttpPost]
         public ActionResult ModifierMDP(ChangerMotDePasseViewModel model, string ReturnUrl) {
+
+            if (ModelState.IsValid) {          
+                utilisateurManager.UpdateMotDePasse(model.Id, model.MDP);
+                return Redirect(ReturnUrl);
+            }
+
             ViewBag.ReturnUrl = ReturnUrl;
-            utilisateurManager.UpdateMotDePasse(model.Id, model.MDP);
-            return Redirect(ReturnUrl);
+            return View(model);
         }
 
         // POST: /Account/LogOff
