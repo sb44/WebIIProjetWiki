@@ -305,6 +305,10 @@
     <value>si vous n'avez pas de compte.</value>
     <comment>Hardcode dans la vue connexion</comment>
   </data>
+  <data name="ERR_courriel_invalide" xml:space="preserve">
+    <value>Courriel invalide!</value>
+    <comment>ViewModel Connexion</comment>
+  </data>
   <data name="ERR_HC_Home_titre" xml:space="preserve">
     <value>Ce titre est déjà existant, veuillez réessayer avec un autre titre.</value>
     <comment>Hardcoded dans le controleur HOME</comment>

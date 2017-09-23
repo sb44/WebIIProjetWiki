@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Wiki.Ressource;
+using System.Resources;
 
 using Wiki.Models.DAL;
 
 namespace Wiki.Models.Biz {
     public class ConnexionViewModel {
-        [Required(ErrorMessage = "Veuillez entrer votre courriel!"), StringLength(50, ErrorMessage = "Courriel ne peut pas depasser 50 lettres!")]
-        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Courriel invalide!")]
+        [Required(ErrorMessageResourceName = "ERR_courriel", ErrorMessageResourceType = typeof(RessourceView)), StringLength(50,
+                ErrorMessageResourceName = "ERR_courriel50", ErrorMessageResourceType = typeof(RessourceView))]
+        //[Required(AllowEmptyStrings = false,ErrorMessageResourceName = "", ErrorMessageResourceType = typeof(RessourceView))]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$",
+                ErrorMessageResourceName = "ERR_courriel_invalide", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "courriel", ResourceType = typeof(RessourceView))]
         public string Courriel { set; get; }
 
         [DataType(DataType.Password)]
-        [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 letters et plus que 6 lesttres!")]
+        [Required, StringLength(70, MinimumLength = 6,
+          ErrorMessageResourceName = "ERR_MDP", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "motDePass", ResourceType = typeof(RessourceView))]
         public string MDP { get; set; }
 
@@ -21,27 +26,37 @@ namespace Wiki.Models.Biz {
 
     public class InscriptionViewModel {
         [Uniqueness("Courriel")]
-        [Required(ErrorMessage = "Veuillez entrer votre courriel!"), StringLength(50,ErrorMessage = "Courriel ne peut pas depasser 50 lettres!")]
-        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Courriel invalide!")]
+        [Required(
+            ErrorMessageResourceName = "ERR_courriel", ErrorMessageResourceType = typeof(RessourceView)), StringLength(50,
+            ErrorMessageResourceName = "ERR_courriel50", ErrorMessageResourceType = typeof(RessourceView))]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", 
+            ErrorMessage = "Courriel invalide!")]
         [Display(Name = "courriel", ResourceType = typeof(RessourceView))]
         public string Courriel { set; get; }
 
         [DataType(DataType.Password)]
-        [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 letters et plus que 6 lesttres!")]
+        [Required, StringLength(70, MinimumLength = 6,
+            ErrorMessageResourceName = "ERR_MDP", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "motDePass", ResourceType = typeof(RessourceView))]
         public string MDP { get; set; }
 
         [DataType(DataType.Password)]
-        [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 letters et plus que 6 lesttres!")]
-        [Compare("MDP", ErrorMessage = "les mots de passe ne sont pas memes!")]
+        [Required, StringLength(70, MinimumLength = 6,
+            ErrorMessageResourceName = "ERR_MDP", ErrorMessageResourceType = typeof(RessourceView) )]
+        [Compare("MDP",
+            ErrorMessageResourceName = "ERR_MDPCompare", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "MDPConfirmer", ResourceType = typeof(RessourceView))]
         public string MDPConfirmer { get; set; }
 
-        [Required(ErrorMessage = "Veuillez entrer votre nom de famille!"), StringLength(50, ErrorMessage = "Nom de famille ne peut pas depasser 50 lettres!")]
+        [Required(
+            ErrorMessageResourceName = "ERR_nom", ErrorMessageResourceType = typeof(RessourceView)), StringLength(50,
+            ErrorMessageResourceName = "ERR_nom50", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "nomFamille", ResourceType = typeof(RessourceView))]
         public string NomFamille { get; set; }
 
-        [Required(ErrorMessage = "Veuillez entrer votre prenom!"), StringLength(50, ErrorMessage = "Prenom ne peut pas depasser 50 lettres!")]
+        [Required(
+            ErrorMessageResourceName = "ERR_prenom", ErrorMessageResourceType = typeof(RessourceView)), StringLength(50,
+            ErrorMessageResourceName = "ERR_prenom50", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "prenom", ResourceType = typeof(RessourceView))]
         public string Prenom { get; set; }
 
@@ -57,13 +72,16 @@ namespace Wiki.Models.Biz {
         public int Id { get; set; }
 
         [DataType(DataType.Password)]
-        [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 lettres et plus que 6 lesttres!")]
+        [Required, StringLength(70, MinimumLength = 6,
+            ErrorMessageResourceName = "ERR_MDP", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "nouvMotDePass", ResourceType = typeof(RessourceView))]
         public string MDP { get; set; }
 
         [DataType(DataType.Password)]
-        [Required, StringLength(70, MinimumLength = 6, ErrorMessage = "Mot de passe doit etre moins que 70 lettres et plus que 6 lesttres!")]
-        [Compare("MDP", ErrorMessage = "les mots de passe ne sont pas memes!")]
+        [Required, StringLength(70, MinimumLength = 6,
+            ErrorMessageResourceName = "ERR_MDP", ErrorMessageResourceType = typeof(RessourceView))]
+        [Compare("MDP",
+            ErrorMessageResourceName = "ERR_MDPCompare", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "MDPConfirmer", ResourceType = typeof(RessourceView))]
         public string MDPConfirmer { get; set; }
     }
@@ -72,11 +90,15 @@ namespace Wiki.Models.Biz {
 
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Veuillez entrer votre nom de famille!"), StringLength(50, ErrorMessage = "Nom de famille ne peut pas depasser 50 lettres!")]
+        [Required(
+            ErrorMessageResourceName = "ERR_nom", ErrorMessageResourceType = typeof(RessourceView)), StringLength(50,
+            ErrorMessageResourceName = "ERR_nom50", ErrorMessageResourceType = typeof(RessourceView))]
         [Display(Name = "nomFamille", ResourceType = typeof(RessourceView))]
         public string NomFamille { get; set; }
        
-        [Required(ErrorMessage = "Veuillez entrer votre prenom!"), StringLength(50, ErrorMessage = "Prenom ne peut pas depasser 50 lettres!")]
+        [Required(
+            ErrorMessageResourceName = "ERR_prenom", ErrorMessageResourceType = typeof(RessourceView)), StringLength(50,
+            ErrorMessageResourceName = "ERR_prenom50", ErrorMessageResourceType = typeof(RessourceView) )]
         [Display(Name = "prenom", ResourceType = typeof(RessourceView))]
         public string Prenom { get; set; }
 

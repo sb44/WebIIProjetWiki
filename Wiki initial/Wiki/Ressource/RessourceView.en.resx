@@ -313,6 +313,10 @@
     <value>if you do not have an account.</value>
     <comment>Hardcode dans la vue connexion</comment>
   </data>
+  <data name="ERR_courriel_invalide" xml:space="preserve">
+    <value>Invalid email!</value>
+    <comment>ViewModel Connexion</comment>
+  </data>
   <data name="ERR_HC_Home_titre" xml:space="preserve">
     <value>This title is already available, please try again with another title.</value>
     <comment>Hardcoded dans le controleur HOME</comment>

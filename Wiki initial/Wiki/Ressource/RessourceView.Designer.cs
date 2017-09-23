@@ -99,6 +99,15 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string ERR_courriel_invalide {
+            get {
+                return ResourceManager.GetString("ERR_courriel_invalide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string ERR_courriel50 {
             get {
                 return ResourceManager.GetString("ERR_courriel50", resourceCulture);
@@ -153,9 +162,27 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string ERR_nom50 {
+            get {
+                return ResourceManager.GetString("ERR_nom50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string ERR_prenom {
             get {
                 return ResourceManager.GetString("ERR_prenom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ERR_prenom50 {
+            get {
+                return ResourceManager.GetString("ERR_prenom50", resourceCulture);
             }
         }
         

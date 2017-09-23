@@ -313,9 +313,21 @@
     <value>si no tiene una cuenta.</value>
     <comment>Hardcode dans la vue connexion</comment>
   </data>
+  <data name="ERR_courriel_invalide" xml:space="preserve">
+    <value>Email no válido!</value>
+    <comment>ViewModel Connexion</comment>
+  </data>
   <data name="ERR_HC_Home_titre" xml:space="preserve">
     <value>Este título ya está disponible, inténtalo de nuevo con otro título.</value>
     <comment>Hardcoded dans le controleur HOME</comment>
+  </data>
+  <data name="ERR_nom50" xml:space="preserve">
+    <value>El apellido no puede exceder las 50 letras!</value>
+    <comment>ViewModel Inscription</comment>
+  </data>
+  <data name="ERR_prenom50" xml:space="preserve">
+    <value>El nombre no puede exceder las 50 letras!</value>
+    <comment>ViewModel Inscription</comment>
   </data>
   <data name="ZHC_modifMDP_backtolist" xml:space="preserve">
     <value>Volver a la lista</value>
