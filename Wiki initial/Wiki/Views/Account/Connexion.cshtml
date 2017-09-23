@@ -25,7 +25,7 @@
                     @Html.LabelFor(m => m.Courriel, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Courriel, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Courriel)
+                        @Html.ValidationMessageFor(m => m.Courriel, "", new { @class = "text-danger" })
                
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     @Html.LabelFor(m => m.MDP, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.PasswordFor(m => m.MDP, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.MDP)
+                        @Html.ValidationMessageFor(m => m.MDP, "", new { @class = "text-danger" })
                         <p>@ViewBag.error</p>
                     </div>
                 </div>
