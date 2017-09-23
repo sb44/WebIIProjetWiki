@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Wiki.Models.Biz; //aj sb
 using Wiki.Models.Biz.Interfaces;
 using Wiki.CultureHelp;
+using System.Threading;
 
 namespace Wiki.Controllers {
     public class HomeController : Controller {
@@ -19,19 +20,30 @@ namespace Wiki.Controllers {
         /// ////////////////////////////////////////////////////////////
         protected override void ExecuteCore()
         {
-            int culture = 0;
-            if (this.Session == null || this.Session["CurrentCulture"] == null)
+            HttpCookie languageCookie = System.Web.HttpContext.Current.Request.Cookies["lang"];
+            if (languageCookie != null)
             {
-
-                int.TryParse(System.Configuration.ConfigurationManager.AppSettings["Culture"], out culture);
-                this.Session["CurrentCulture"] = culture;
+                CultureHelper.CurrentCulture = int.Parse(languageCookie.Value);
             }
             else
             {
-                culture = (int)this.Session["CurrentCulture"];
+                int culture = 0;
+                if (this.Session == null || this.Session["CurrentCulture"] == null)
+                {
+
+                    int.TryParse(System.Configuration.ConfigurationManager.AppSettings["Culture"], out culture);
+                    this.Session["CurrentCulture"] = culture;
+                }
+                else
+                {
+                    culture = (int)this.Session["CurrentCulture"];
+                }
+                //  CultureHelper classe méthode 
+                CultureHelper.CurrentCulture = culture;
             }
-            //  CultureHelper classe méthode 
-            CultureHelper.CurrentCulture = culture;
+
+
+           
 
             base.ExecuteCore();
         }
@@ -46,6 +58,8 @@ namespace Wiki.Controllers {
             // Changer la culture courantpour cet utilisateur
             //  
             CultureHelper.CurrentCulture = id;
+            var langCookie = new HttpCookie("lang", id.ToString()) { HttpOnly = true };
+            Response.AppendCookie(langCookie);
             //  
             // Mettre current culture dans la session HTTP.   
             //  
