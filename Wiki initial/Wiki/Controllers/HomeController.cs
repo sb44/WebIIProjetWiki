@@ -58,8 +58,15 @@ namespace Wiki.Controllers {
             // Changer la culture courantpour cet utilisateur
             //  
             CultureHelper.CurrentCulture = id;
-            var langCookie = new HttpCookie("lang", id.ToString()) { HttpOnly = true };
-            Response.AppendCookie(langCookie);
+            // devrait verifier l'exitence 
+            if (Response.Cookies["lang"] == null)
+            {
+                Response.Cookies.Add(new HttpCookie("lang", id.ToString()) { HttpOnly = true });
+            }
+            else
+            {
+                Response.Cookies["lang"].Value = id.ToString();
+            }
             //  
             // Mettre current culture dans la session HTTP.   
             //  

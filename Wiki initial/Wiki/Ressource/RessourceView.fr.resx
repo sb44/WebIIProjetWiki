@@ -341,4 +341,8 @@
     <value>Modifier mot de passe</value>
     <comment>Hardcoded dans la vue modifier profil</comment>
   </data>
+  <data name="ZHC_bout_creer" xml:space="preserve">
+    <value>Creer</value>
+    <comment>Hardcoded Bouton dans la vue inscription</comment>
+  </data>
 </root>

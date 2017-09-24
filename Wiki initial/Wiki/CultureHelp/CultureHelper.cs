@@ -5,6 +5,7 @@ using System.Web;
 using System.Globalization;
 using System.Threading;
 using System.Web.SessionState;
+using Wiki.Ressource;
 
 namespace Wiki.CultureHelp
 {
@@ -17,6 +18,7 @@ namespace Wiki.CultureHelp
         {
             session = httpSessionState;
         }
+       
         // Properties  
         public static int CurrentCulture
         {

@@ -423,6 +423,15 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string ZHC_bout_creer {
+            get {
+                return ResourceManager.GetString("ZHC_bout_creer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string ZHC_connexion_compte {
             get {
                 return ResourceManager.GetString("ZHC_connexion_compte", resourceCulture);

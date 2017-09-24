@@ -6,6 +6,8 @@ using System.Web.Security;
 using Wiki.Models.Biz;
 using Wiki.Models.Biz.DTO;
 using Wiki.Models.Biz.Interfaces;
+using Wiki.Ressource;
+using Wiki.CultureHelp;
 
 namespace Wiki.Controllers {
     public class AccountController : HomeController
@@ -15,9 +17,9 @@ namespace Wiki.Controllers {
         private static UtilisateurManager utilisateurManager;
 
         Dictionary<string, string> dic = new Dictionary<string, string>{
-                {"fr-CA", "Français" },
-                {"en-CA", "English" },
-                {"es-ES", "espanol" }
+                {"fr-CA", RessourceView.ZHC_lang_fr },
+                {"en-CA", RessourceView.ZHC_lang_en },
+                {"es-ES", RessourceView.ZHC_lang_es }
             };
 
         public AccountController() {
@@ -57,6 +59,8 @@ namespace Wiki.Controllers {
                                  (uDto.Langue.ToString().ToLower().IndexOf("en") != -1) ? new HttpCookie("lang", "1") { HttpOnly = true } :
                                  (uDto.Langue.ToString().ToLower().IndexOf("es") != -1) ? new HttpCookie("lang", "2") { HttpOnly = true } : new HttpCookie("lang", "0") { HttpOnly = true };
                 Response.AppendCookie(langCookie);
+                // ajout arash
+                CultureHelper.CurrentCulture = int.Parse(langCookie.Value);
 
                 if (ReturnUrl == "") {
                     return RedirectToAction("Index", "Home");
@@ -154,6 +158,11 @@ namespace Wiki.Controllers {
 
         public ActionResult Deconnexion() {
             FormsAuthentication.SignOut();
+            
+            if (Request.Cookies["lang"] != null)
+            {
+                Response.Cookies["lang"].Expires = System.DateTime.Now.AddDays(-1);
+            }
             return RedirectToAction("Index", "Home");
         }
     }
