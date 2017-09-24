@@ -66,6 +66,7 @@ namespace Wiki.Models.Biz {
         [Display(Name = "langue", ResourceType = typeof(RessourceView))]
         public string Langue { get; set; }
 
+        [Display(ResourceType =typeof(RessourceView))]
         public System.Web.Mvc.SelectList SelectionLangue { get; set; }
     }
 

@@ -11,47 +11,7 @@ using Wiki.CultureHelp;
 using System.Threading;
 
 namespace Wiki.Controllers {
-    public class HomeController : Controller {
-
-        /// ////////////////////////////////////////////////////////////
-        /// 
-        /// Override méthode pour contrôler la session ( utilisé pour les langues)
-        ///
-        /// ////////////////////////////////////////////////////////////
-        protected override void ExecuteCore()
-        {
-            HttpCookie languageCookie = System.Web.HttpContext.Current.Request.Cookies["lang"];
-            if (languageCookie != null)
-            {
-                CultureHelper.CurrentCulture = int.Parse(languageCookie.Value);
-            }
-            else
-            {
-                int culture = 0;
-                if (this.Session == null || this.Session["CurrentCulture"] == null)
-                {
-
-                    int.TryParse(System.Configuration.ConfigurationManager.AppSettings["Culture"], out culture);
-                    this.Session["CurrentCulture"] = culture;
-                }
-                else
-                {
-                    culture = (int)this.Session["CurrentCulture"];
-                }
-                //  CultureHelper classe méthode 
-                CultureHelper.CurrentCulture = culture;
-            }
-
-
-           
-
-            base.ExecuteCore();
-        }
-
-
-        /// <summary>
-        /// Action utilisé pour changer les langues
-        /// </summary>
+    public class HomeController : BaseController {
         public ActionResult ChangeCurrentCulture(int id)
         {
             //  

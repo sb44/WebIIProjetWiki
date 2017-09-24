@@ -10,17 +10,13 @@ using Wiki.Ressource;
 using Wiki.CultureHelp;
 
 namespace Wiki.Controllers {
-    public class AccountController : HomeController
+    public class AccountController : BaseController
     {
         private static readonly IUtilisateurRepository utilisateurRepository = new Models.DAL.Utilisateurs();
         private readonly IUtilisateurRepository _utilisateurRepository; 
         private static UtilisateurManager utilisateurManager;
 
-        Dictionary<string, string> dic = new Dictionary<string, string>{
-                {"fr-CA", RessourceView.ZHC_lang_fr },
-                {"en-CA", RessourceView.ZHC_lang_en },
-                {"es-ES", RessourceView.ZHC_lang_es }
-            };
+        
 
         public AccountController() {
             if (utilisateurManager == null) {
@@ -74,7 +70,11 @@ namespace Wiki.Controllers {
         // GET: /Account/Register
         public ActionResult Inscription() {     
             var model = new InscriptionViewModel(); 
-            model.SelectionLangue = new SelectList(dic, "Key", "Value");   
+            model.SelectionLangue = new SelectList(new Dictionary<string, string>{
+                {"fr-CA", RessourceView.ZHC_lang_fr },
+                {"en-CA", RessourceView.ZHC_lang_en },
+                {"es-ES", RessourceView.ZHC_lang_es }
+            }, "Key", "Value");   
             return View(model);
         }
 
@@ -96,7 +96,13 @@ namespace Wiki.Controllers {
                 return RedirectToAction("Index", "Home");
             }
             // Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
-            model.SelectionLangue = new SelectList(dic, "Key", "Value");
+            model.SelectionLangue = new SelectList(new Dictionary<string, string>{
+                {"fr-CA", RessourceView.ZHC_lang_fr },
+                {"en-CA", RessourceView.ZHC_lang_en },
+                {"es-ES", RessourceView.ZHC_lang_es }
+            }, "Key", "Value");
+            int a = CultureHelper.CurrentCulture;
+            
             return View(model);
         }
 
@@ -110,7 +116,11 @@ namespace Wiki.Controllers {
             model.NomFamille = u.NomFamille;
             model.Prenom = u.Prenom;
             model.Id = u.Id;
-            model.SelectionLangue = new SelectList(dic, "Key", "Value");
+            model.SelectionLangue = new SelectList(new Dictionary<string, string>{
+                {"fr-CA", RessourceView.ZHC_lang_fr },
+                {"en-CA", RessourceView.ZHC_lang_en },
+                {"es-ES", RessourceView.ZHC_lang_es }
+            }, "Key", "Value");
             return View(model);
         }
 
@@ -130,7 +140,11 @@ namespace Wiki.Controllers {
             }
 
             ViewBag.ReturnUrl = ReturnUrl;
-            model.SelectionLangue = new SelectList(dic, "Key", "Value");
+            model.SelectionLangue = new SelectList(new Dictionary<string, string>{
+                {"fr-CA", RessourceView.ZHC_lang_fr },
+                {"en-CA", RessourceView.ZHC_lang_en },
+                {"es-ES", RessourceView.ZHC_lang_es }
+            }, "Key", "Value");
             return View(model);
         }
 
