@@ -349,4 +349,8 @@
     <value />
     <comment>Hardcoded Bouton dans la vue inscription</comment>
   </data>
+  <data name="ERR_titre_vide" xml:space="preserve">
+    <value />
+    <comment>Hardcoded vue index</comment>
+  </data>
 </root>

@@ -198,6 +198,15 @@ namespace Wiki.Ressource {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string ERR_titre_vide {
+            get {
+                return ResourceManager.GetString("ERR_titre_vide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string GO {
             get {
                 return ResourceManager.GetString("GO", resourceCulture);

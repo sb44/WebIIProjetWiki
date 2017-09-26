@@ -345,4 +345,7 @@
     <value>Creer</value>
     <comment>Hardcoded Bouton dans la vue inscription</comment>
   </data>
+  <data name="ERR_titre_vide" xml:space="preserve">
+    <value>Erreur! Veuillez saisir un titre.</value>
+  </data>
 </root>

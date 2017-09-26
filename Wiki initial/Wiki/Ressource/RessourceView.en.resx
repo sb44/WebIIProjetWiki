@@ -349,4 +349,8 @@
     <value>Create</value>
     <comment>Hardcoded Bouton dans la vue inscription</comment>
   </data>
+  <data name="ERR_titre_vide" xml:space="preserve">
+    <value>Error! Please enter a title.</value>
+    <comment>Harcoded vue index</comment>
+  </data>
 </root>

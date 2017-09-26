@@ -65,7 +65,12 @@ namespace Wiki.Controllers {
         [Route("~/")]                       // cet atttribut défini la page d'accueil de l'application
         [Route("~/home")]
         [Route("home/index/{titre?}")]      // titre est un parametètre optionnel
-        public ActionResult Index(string titre) {
+        public ActionResult Index(string titre, string operation) {
+
+            if (!String.IsNullOrEmpty(operation) && String.IsNullOrEmpty(titre)) {
+                ModelState.AddModelError("Titre", Ressource.RessourceView.ERR_titre_vide);
+                return View();
+            }
 
             // AFFICHER L'ARTICLE SI SAISIE OU SÉLECTIONNÉ
             if (!String.IsNullOrEmpty(titre)) {
@@ -116,8 +121,6 @@ namespace Wiki.Controllers {
 
                     if (ModelState.IsValid) {
 
-                        //if (repo.Add(a) != 0)
-                        //    lstArticles = repo.GetArticles();
                         articleManager.Add(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
 
                         return RedirectToAction("Index", "Home", new { titre = a.Titre }); // pour displayer la nouvelle article créé..

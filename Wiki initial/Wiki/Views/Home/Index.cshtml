@@ -36,11 +36,30 @@
 }*@     
     @*équivalence : *@
                     <form class="col-lg-12" method="post" action="/">
-                        <div class="input-group input-group-lg col-sm-offset-1 col-sm-10">
-                            @Html.TextBox("Titre", titre, new { @class = "center-block form-control input-lg", placeholder = Wiki.Ressource.RessourceView.vHC_Ind_placeHolder })
-                            <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit" name="operation">@Wiki.Ressource.RessourceView.GO</button></span>
-                        </div>
+                        @if (ViewData.ModelState.IsValid) {
+
+                            <div class="input-group input-group-lg col-sm-offset-1 col-sm-10">
+                                @Html.TextBox("Titre", titre, new { @class = "center-block form-control input-lg", placeholder = Wiki.Ressource.RessourceView.vHC_Ind_placeHolder })
+                                <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit" name="operation" value="create">@Wiki.Ressource.RessourceView.GO</button></span>
+                            </div>
+
+                        } else { /*il y a erreur, soit une saisie de titre vide*/
+
+                            <div class="input-group input-group-lg has-error has-feedback col-sm-offset-1 col-sm-10">
+                               @Html.TextBox("Titre", titre, new { @class = "center-block form-control input-lg", id = "inputError", placeholder = Wiki.Ressource.RessourceView.vHC_Ind_placeHolder })
+                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-lg btn-primary" type="submit" name="operation" value="create">@Wiki.Ressource.RessourceView.GO</button>
+                                </span>
+                                
+
+                                
+                            </div>
+                            @Html.ValidationMessage("Titre", "", new { @class = "text-danger" })
+                        }
+
                     </form>
+                
             </div>
 
         </div> <!-- /row -->
