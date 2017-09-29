@@ -1,4 +1,4 @@
-﻿@model Wiki.Models.Biz.ChangerProfilViewModel
+﻿@model Wiki.Models.ViewModels.ChangerProfilViewModel
 
 @{
     ViewBag.Title = Wiki.Ressource.RessourceView.ZHC_modifProfil;
@@ -11,10 +11,9 @@
 <h2>@Wiki.Ressource.RessourceView.ZHC_modifProfil</h2>
 
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4></h4>
         <hr />

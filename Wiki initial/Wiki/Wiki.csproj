@@ -157,7 +157,7 @@
     <Compile Include="Models\Biz\Interfaces\IUtilisateurRepository.cs" />
     <Compile Include="Models\Biz\PasswordHash.cs" />
     <Compile Include="Models\Biz\UtilisateurManager.cs" />
-    <Compile Include="Models\Biz\ViewModel\UtilisateurViewModel.cs" />
+    <Compile Include="Models\ViewModels\UtilisateurViewModel.cs" />
     <Compile Include="Models\DAL\Articles.cs" />
     <Compile Include="Models\DAL\Utilisateurs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -246,8 +246,8 @@
     <Content Include="Views\Home\PartialDetailsArticle.cshtml" />
     <Content Include="Views\Account\Connexion.cshtml" />
     <Content Include="Views\Account\Inscription.cshtml" />
-    <Content Include="Views\Account\ModifierProfil.cshtml" />
     <Content Include="Views\Account\ModifierMDP.cshtml" />
+    <Content Include="Views\Account\ModifierProfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

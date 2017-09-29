@@ -8,6 +8,7 @@ using Wiki.Models.Biz.DTO;
 using Wiki.Models.Biz.Interfaces;
 using Wiki.Ressource;
 using Wiki.CultureHelp;
+using Wiki.Models.ViewModels;
 
 namespace Wiki.Controllers {
     public class AccountController : BaseController

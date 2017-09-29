@@ -6,7 +6,7 @@ using System.Resources;
 
 using Wiki.Models.DAL;
 
-namespace Wiki.Models.Biz {
+namespace Wiki.Models.ViewModels {
     public class ConnexionViewModel {
         [Required(ErrorMessageResourceName = "ERR_courriel", ErrorMessageResourceType = typeof(RessourceView)), StringLength(50,
                 ErrorMessageResourceName = "ERR_courriel50", ErrorMessageResourceType = typeof(RessourceView))]

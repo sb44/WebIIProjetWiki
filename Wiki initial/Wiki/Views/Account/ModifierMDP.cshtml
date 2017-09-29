@@ -1,4 +1,4 @@
-﻿@model Wiki.Models.Biz.ChangerMotDePasseViewModel
+﻿@model Wiki.Models.ViewModels.ChangerMotDePasseViewModel
 
 @{
     ViewBag.Title = Wiki.Ressource.RessourceView.ZHC_mProfil_modifMDP;
@@ -7,10 +7,9 @@
 <h2>@Wiki.Ressource.RessourceView.ZHC_mProfil_modifMDP</h2>
 
 
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>@Wiki.Ressource.RessourceView.nouvMotDePass</h4>
         <hr />

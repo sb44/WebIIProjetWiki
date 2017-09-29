@@ -1,4 +1,4 @@
-﻿@model Wiki.Models.Biz.InscriptionViewModel
+﻿@model Wiki.Models.ViewModels.InscriptionViewModel
 
 @{
     ViewBag.Title = "Inscription";
@@ -12,10 +12,9 @@
 <h2>@Wiki.Ressource.RessourceView.ZHC_menu_ins</h2>
 
 
-@using (Html.BeginForm()) 
-{
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4></h4>
         <hr />
