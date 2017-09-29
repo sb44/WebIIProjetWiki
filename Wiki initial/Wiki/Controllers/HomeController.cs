@@ -46,19 +46,17 @@ namespace Wiki.Controllers {
             get { return true; }
         }
 
-
-        //static Articles repo = new Articles();
-        //static IList<Article> lstArticles = repo.GetArticles(); 
-
-        private static readonly IArticleRepository articleRepository = new Models.DAL.Articles();
+        // https://www.devtrends.co.uk/blog/integrating-the-unity.mvc3-1.1-nuget-package-from-scratch https://www.devtrends.co.uk/blog/how-not-to-do-dependency-injection-the-static-or-singleton-container https://stackoverflow.com/questions/194999/are-static-class-instances-unique-to-a-request-or-a-server-in-asp-net
+        // Utilisation de Unity.MVC5 (ajouter avec NuGet)
+        // L'usage de ce constructeur pour HomeController permet d'injecter l'instance et éviter cette ligne de code qui exige référence et crée une dépendance à la couche de persistence :   private readonly IArticleRepository articleRepository = new Models.DAL.Articles();
+        // 1. Dans Application_Start() => UnityConfig.RegisterComponents();
+        // 2. Dans class UnityConfig, ajout de l'instance => container.RegisterType<Models.Biz.Interfaces.IArticleRepository, Models.DAL.Articles>(); 
         private readonly IArticleRepository _articleRepository; //readonly assure que seul le ctor peut l'assigner
-        private static ArticleManager articleManager;
+        private ArticleManager _articleManager;
 
-        public HomeController() {
-            if (articleManager == null) {
-                _articleRepository = articleRepository;
-                articleManager = new ArticleManager(_articleRepository);
-            }
+        public HomeController(IArticleRepository articleRepository) {
+            _articleRepository = articleRepository;
+            _articleManager = new ArticleManager(_articleRepository);
         }
 
         // GET: Home
@@ -74,7 +72,7 @@ namespace Wiki.Controllers {
 
             // AFFICHER L'ARTICLE SI SAISIE OU SÉLECTIONNÉ
             if (!String.IsNullOrEmpty(titre)) {
-                Article a = articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
+                Article a = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
                 if (a != null)
                     return View(a);
                 else { /* Saisie d'un article inexistant au clavier, donc 
@@ -90,7 +88,7 @@ namespace Wiki.Controllers {
 
         [ChildActionOnly]
         public ActionResult PartialTableDesMatieres() {
-            return PartialView(articleManager.lstArticles);
+            return PartialView(_articleManager.lstArticles);
         }
 
         [HttpGet]
@@ -116,12 +114,12 @@ namespace Wiki.Controllers {
             switch (operation) {
                 case "Ajouter":
                     // Valider que le titre de l'article n'existe pas déjà...
-                    if (articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(a.Titre)) != null)
+                    if (_articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(a.Titre)) != null)
                         ModelState.AddModelError("Titre", Ressource.RessourceView.ERR_HC_Home_titre);
 
                     if (ModelState.IsValid) {
 
-                        articleManager.Add(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
+                        _articleManager.Add(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
 
                         return RedirectToAction("Index", "Home", new { titre = a.Titre }); // pour displayer la nouvelle article créé..
                     } else {
@@ -146,7 +144,7 @@ namespace Wiki.Controllers {
                 return RedirectToAction("Connexion", "Account");
             }
 
-            return View(articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
+            return View(_articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
         }
 
         [HttpPost]
@@ -156,7 +154,7 @@ namespace Wiki.Controllers {
             switch (operation) {
                 case "Enregistrer":
                     if (ModelState.IsValid) {
-                        articleManager.Update(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
+                        _articleManager.Update(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
                         //if (repo.Update(a) != 0)
                         //    lstArticles = repo.GetArticles();
                         return RedirectToAction("Index", "Home");
@@ -180,13 +178,13 @@ namespace Wiki.Controllers {
                 return RedirectToAction("Connexion", "Account");
             }
 
-            return View(articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
+            return View(_articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
         }
 
         [HttpPost]
         [Route("home/supprimer/{titre}")]
         public ActionResult supprimerArticleConfirmation(string titre) {
-            articleManager.Delete(titre);
+            _articleManager.Delete(titre);
             return RedirectToAction("Index", "Home");
         }
 

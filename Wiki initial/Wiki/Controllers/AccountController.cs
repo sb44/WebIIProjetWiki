@@ -12,19 +12,25 @@ using Wiki.CultureHelp;
 namespace Wiki.Controllers {
     public class AccountController : BaseController
     {
-        private static readonly IUtilisateurRepository utilisateurRepository = new Models.DAL.Utilisateurs();
-        private readonly IUtilisateurRepository _utilisateurRepository; 
-        private static UtilisateurManager utilisateurManager;
+        //private static readonly IUtilisateurRepository utilisateurRepository = new Models.DAL.Utilisateurs();
+        //private readonly IUtilisateurRepository _utilisateurRepository; 
+        //private static UtilisateurManager utilisateurManager;
 
-        
+        //public AccountController() {
+        //    if (utilisateurManager == null) {
+        //        _utilisateurRepository = utilisateurRepository;
+        //        utilisateurManager = new UtilisateurManager(_utilisateurRepository);
+        //    }
+        //}
 
-        public AccountController() {
-            if (utilisateurManager == null) {
-                _utilisateurRepository = utilisateurRepository;
-                utilisateurManager = new UtilisateurManager(_utilisateurRepository);
-            }
+        private readonly IUtilisateurRepository _utilisateurRepository; //readonly assure que seul le ctor peut l'assigner
+        private UtilisateurManager _utilisateurManager;
+
+        public AccountController(IUtilisateurRepository utilisateurRepository) {
+            _utilisateurRepository = utilisateurRepository;
+            _utilisateurManager = new UtilisateurManager(_utilisateurRepository);
         }
-
+        
         // GET: /Account/Connexion
         [AllowAnonymous]
         public ActionResult Connexion(string returnUrl) {
@@ -40,7 +46,7 @@ namespace Wiki.Controllers {
         public ActionResult Connexion(ConnexionViewModel model, string ReturnUrl = "") {
             ViewBag.error = "";
             ViewBag.ReturnUrl = ReturnUrl;
-            if (!utilisateurManager.Authentifier(model.Courriel, model.MDP)) {
+            if (!_utilisateurManager.Authentifier(model.Courriel, model.MDP)) {
                 if (model.MDP != null) {
                     ViewBag.error = "Courriel ou mot de passe invalide!";
                 }
@@ -50,7 +56,7 @@ namespace Wiki.Controllers {
                 // Users.currentUser = Users.GetUserByEmail(email);
 
                 //ajout sasha
-                var uDto = utilisateurManager.FindUtilisateurByCourriel(model.Courriel);
+                var uDto = _utilisateurManager.FindUtilisateurByCourriel(model.Courriel);
                 var langCookie = (uDto.Langue.ToString().ToLower().IndexOf("fr") != -1) ? new HttpCookie("lang", "0") { HttpOnly = true } :
                                  (uDto.Langue.ToString().ToLower().IndexOf("en") != -1) ? new HttpCookie("lang", "1") { HttpOnly = true } :
                                  (uDto.Langue.ToString().ToLower().IndexOf("es") != -1) ? new HttpCookie("lang", "2") { HttpOnly = true } : new HttpCookie("lang", "0") { HttpOnly = true };
@@ -85,7 +91,7 @@ namespace Wiki.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Inscription(InscriptionViewModel model) {
             if (ModelState.IsValid) {
-                utilisateurManager.AddUtilisateur(model.Courriel, model.MDP, model.Prenom, model.NomFamille, model.Langue);
+                _utilisateurManager.AddUtilisateur(model.Courriel, model.MDP, model.Prenom, model.NomFamille, model.Langue);
 
                 //ajout sasha 
                 var langCookie = (model.Langue.ToString().ToLower().IndexOf("fr") != -1) ? new HttpCookie("lang", "0") { HttpOnly = true } :
@@ -111,7 +117,7 @@ namespace Wiki.Controllers {
             ViewBag.ReturnUrl = ReturnUrl;
             ChangerProfilViewModel model = new ChangerProfilViewModel();
             UtilisateurDTO u = new UtilisateurDTO(); 
-            u = utilisateurManager.FindUtilisateurByCourriel(System.Web.HttpContext.Current.User.Identity.Name);
+            u = _utilisateurManager.FindUtilisateurByCourriel(System.Web.HttpContext.Current.User.Identity.Name);
             model.Langue = u.Langue;
             model.NomFamille = u.NomFamille;
             model.Prenom = u.Prenom;
@@ -128,7 +134,7 @@ namespace Wiki.Controllers {
         public ActionResult ModifierProfil(ChangerProfilViewModel model, string ReturnUrl) {
 
             if (ModelState.IsValid) {
-                utilisateurManager.UpdateUtilisateur(model.Prenom, model.NomFamille, model.Id, model.Langue);
+                _utilisateurManager.UpdateUtilisateur(model.Prenom, model.NomFamille, model.Id, model.Langue);
 
                 //ajout sasha 
                 var langCookie = (model.Langue.ToString().ToLower().IndexOf("fr") != -1) ? new HttpCookie("lang", "0") { HttpOnly = true } :
@@ -158,8 +164,8 @@ namespace Wiki.Controllers {
         [HttpPost]
         public ActionResult ModifierMDP(ChangerMotDePasseViewModel model, string ReturnUrl) {
 
-            if (ModelState.IsValid) {          
-                utilisateurManager.UpdateMotDePasse(model.Id, model.MDP);
+            if (ModelState.IsValid) {
+                _utilisateurManager.UpdateMotDePasse(model.Id, model.MDP);
                 return Redirect(ReturnUrl);
             }
 
