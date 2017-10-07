@@ -20,10 +20,14 @@ namespace Wiki.Models.DAL {
          
         // Auteurs: Sasha Bouchard 
         public int Add(ArticleDTO aDto) {
-            int nbRecords = 0; SqlConnection connexion = null;
+            int nbRecords = 0; //SqlConnection connexion = null;
             try {
 
-                Article a = new Article { Titre = aDto.Titre, Contenu = aDto.Contenu, IdContributeur = aDto.IdContributeur };
+                Article a = new Article { Titre = aDto.Titre,
+                                        Contenu = aDto.Contenu,
+                                        IdContributeur = aDto.IdContributeur,
+                                        DateModification = DateTime.Now, 
+                                        Revision = 1 }; //DateModification et Revision à définir  puisqu'on n'utilise pas la procédure stocké ici
                 this._context.Articles.Add(a);
                 this._context.SaveChanges();
                 nbRecords = 1;
@@ -31,7 +35,7 @@ namespace Wiki.Models.DAL {
             } catch (Exception e) {
                 string Msg = e.Message;
             } finally {
-                connexion.Close();
+                //connexion.Close();
             }
 
             return nbRecords;
@@ -39,10 +43,14 @@ namespace Wiki.Models.DAL {
 
         // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public int Update(ArticleDTO aDto) {
-            int nbRecords = 0; SqlConnection connexion = null;
+            int nbRecords = 0; //SqlConnection connexion = null;
             try {
 
-                Article a = new Article { Titre = aDto.Titre, Contenu = aDto.Contenu, IdContributeur = aDto.IdContributeur };
+                Article a = new Article { Titre = aDto.Titre,
+                                        Contenu = aDto.Contenu,
+                                        IdContributeur = aDto.IdContributeur,
+                                        DateModification = DateTime.Now,
+                                        Revision = aDto.Revision + 1};
                 this._context.Entry(a);
                 this._context.SaveChanges();
                 nbRecords = 1;
@@ -50,7 +58,7 @@ namespace Wiki.Models.DAL {
             } catch (Exception e) {
                 string Msg = e.Message;
             } finally {
-                connexion.Close();
+                //connexion.Close();
             }
 
             return nbRecords;
@@ -60,7 +68,7 @@ namespace Wiki.Models.DAL {
         // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public int Delete(string titre) {
 
-            int nbRecords = 0; SqlConnection connexion = null;
+            int nbRecords = 0; //SqlConnection connexion = null;
             try {
 
                 Article a = this._context.Articles.Find(titre);
@@ -71,7 +79,7 @@ namespace Wiki.Models.DAL {
             } catch (Exception e) {
                 string Msg = e.Message;
             } finally {
-                connexion.Close();
+               // connexion.Close();
             }
 
             return nbRecords;
@@ -80,7 +88,7 @@ namespace Wiki.Models.DAL {
         // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public ArticleDTO Find(string titre) {
 
-            ArticleDTO monArticle = null; SqlConnection connexion = null;
+            ArticleDTO monArticle = null; //SqlConnection connexion = null;
             try {
 
                 Article a = this._context.Articles.Find(titre);
@@ -95,7 +103,7 @@ namespace Wiki.Models.DAL {
             } catch (Exception e) {
                 string Msg = e.Message;
             } finally {
-                connexion.Close();
+                //connexion.Close();
             }
 
             return monArticle; // retourne null par l'assignation en cas d'erreur
@@ -129,7 +137,7 @@ namespace Wiki.Models.DAL {
 
         // Auteurs: Sasha Bouchard
         public IList<string> GetTitres() {
-            IList<string> lstTitres = new List<string>(); SqlConnection connexion = null;
+            IList<string> lstTitres = new List<string>(); //SqlConnection connexion = null;
             
             try {
 
