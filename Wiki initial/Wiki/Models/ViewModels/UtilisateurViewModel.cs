@@ -115,7 +115,7 @@ namespace Wiki.Models.ViewModels {
     public class UniquenessAttribute : ValidationAttribute {
 
         string Courriel { get; set; }
-        static Utilisateurs repo = new Utilisateurs();
+        static Utilisateurs repo = new Utilisateurs(new WikiContext()); // ajout sb wikicontext...
 
         public UniquenessAttribute(string Courriel) {
             this.Courriel = Courriel;

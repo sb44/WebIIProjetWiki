@@ -1,4 +1,5 @@
-﻿using Wiki.Models.Biz.DTO;
+﻿using System.Collections.Generic;
+using Wiki.Models.Biz.DTO;
 
 namespace Wiki.Models.Biz.Interfaces {
     public interface IUtilisateurRepository {
@@ -8,5 +9,6 @@ namespace Wiki.Models.Biz.Interfaces {
         int UpdateMotDePasse(int Id, string NouveauMDP);
         UtilisateurDTO FindUtilisateurById(int Id);
         UtilisateurDTO FindUtilisateurByCourriel(string Courriel);
+        IList<UtilisateurDTO> GetUtilisateurs();
     }
 }

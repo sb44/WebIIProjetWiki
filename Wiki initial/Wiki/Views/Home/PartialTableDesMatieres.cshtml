@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Wiki.Models.Biz.Article>
+﻿@model IEnumerable<Wiki.Models.ViewModels.ArticleViewModel>
+
 <h3>@Wiki.Ressource.RessourceView.vHC_partTabMat_tabMatier</h3>
 
 <table class="table">
@@ -7,51 +8,51 @@
             @Html.DisplayNameFor(model => model.Titre)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.Contenu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateModification)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Revision)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdContributeur)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Contenu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Revision)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdContributeur)
+            </th>*@
         @*<th></th>*@
     </tr>
 
-@foreach (var a in Model) {
-    <tr>
-        <td>
-            @*@Html.DisplayFor(modelItem => a.Titre)*@
-            @Html.Partial("PartialArticle", a)
-        </td>
+    @foreach (var a in Model) {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => a.Titre)*@
+                @Html.Partial("PartialArticle", a)
+            </td>
 
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Contenu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateModification)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Revision)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdContributeur)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>*@
-    </tr>
-}
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Contenu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateModification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Revision)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdContributeur)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
 
 </table>
 
 
-    @*<h2>Table des matières</h2>
+@*<h2>Table des matières</h2>
     <table class="table">
         <tr>
             <th>
@@ -67,3 +68,5 @@
         }
 
         </table>*@
+
+

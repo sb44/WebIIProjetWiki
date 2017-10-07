@@ -8,7 +8,9 @@ using System.Web.Routing;
 using Wiki.Models.Biz; //aj sb
 using Wiki.Models.Biz.Interfaces;
 using Wiki.CultureHelp;
+using Wiki.Models.ViewModels;
 using System.Threading;
+using AutoMapper;
 
 namespace Wiki.Controllers {
     public class HomeController : BaseController {
@@ -72,9 +74,14 @@ namespace Wiki.Controllers {
 
             // AFFICHER L'ARTICLE SI SAISIE OU SÉLECTIONNÉ
             if (!String.IsNullOrEmpty(titre)) {
-                Article a = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
-                if (a != null)
-                    return View(a);
+                Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
+                var config = new MapperConfiguration(cfg => {
+                    cfg.CreateMap<Article, ArticleViewModel>();
+                });
+                IMapper mapper = config.CreateMapper();
+                ArticleViewModel model = mapper.Map<Article, ArticleViewModel>(article);
+                if (model != null)
+                    return View(model);
                 else { /* Saisie d'un article inexistant au clavier, donc 
                        INVITATION À CRÉER L'ARTICLE S'IL Y A LIEU (home/index/<article inexistant>) */
                     ViewBag.TitreSaisieInexistant = titre;
@@ -88,7 +95,13 @@ namespace Wiki.Controllers {
 
         [ChildActionOnly]
         public ActionResult PartialTableDesMatieres() {
-            return PartialView(_articleManager.lstArticles);
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Article, ArticleViewModel>();
+            });
+            IMapper mapper = config.CreateMapper();
+            IList<Article> lArt = _articleManager.lstArticles;
+            IList<ArticleViewModel> model = mapper.Map<IList<Article>, IList<ArticleViewModel>>(lArt);
+            return PartialView(model);
         }
 
         [HttpGet]
@@ -110,7 +123,7 @@ namespace Wiki.Controllers {
         [HttpPost]
         [ValidateInput(false)]
         [Route("home/ajouter/{titre}")]
-        public ActionResult ajouter(Article a, string operation) {
+        public ActionResult ajouter(ArticleViewModel a, string operation) {
             switch (operation) {
                 case "Ajouter":
                     // Valider que le titre de l'article n'existe pas déjà...
@@ -150,7 +163,7 @@ namespace Wiki.Controllers {
         [HttpPost]
         [Route("home/modifier/{titre}")]
         [ValidateInput(false)]
-        public ActionResult modifier(Article a, string operation) {
+        public ActionResult modifier(ArticleViewModel a, string operation) {
             switch (operation) {
                 case "Enregistrer":
                     if (ModelState.IsValid) {
