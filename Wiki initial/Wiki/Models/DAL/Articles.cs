@@ -51,7 +51,15 @@ namespace Wiki.Models.DAL {
                                         IdContributeur = aDto.IdContributeur,
                                         DateModification = DateTime.Now,
                                         Revision = aDto.Revision + 1};
-                this._context.Entry(a);
+
+                Article aExistant = this._context.Articles.Find(a.Titre);
+                if (aExistant != null) {
+                    this._context.Entry(aExistant).CurrentValues.SetValues(a);
+                    this._context.Entry(aExistant).State = System.Data.Entity.EntityState.Modified;
+                } else {
+                    // on le rajoute puisque probablement supprimé par autre utilisateur presque simultané
+                    this._context.Articles.Add(a);
+                }
                 this._context.SaveChanges();
                 nbRecords = 1;
 
@@ -71,10 +79,14 @@ namespace Wiki.Models.DAL {
             int nbRecords = 0; //SqlConnection connexion = null;
             try {
 
-                Article a = this._context.Articles.Find(titre);
-                this._context.Articles.Remove(a);
-                this._context.SaveChanges();
-                nbRecords = 1;
+                Article aExistant = this._context.Articles.Find(titre);
+                if (aExistant != null) {
+                    this._context.Articles.Remove(aExistant);
+                    this._context.SaveChanges();
+                    nbRecords = 1;
+                } else {
+                    //déjà supprimé...
+                }
 
             } catch (Exception e) {
                 string Msg = e.Message;
@@ -91,14 +103,17 @@ namespace Wiki.Models.DAL {
             ArticleDTO monArticle = null; //SqlConnection connexion = null;
             try {
 
-                Article a = this._context.Articles.Find(titre);
-                monArticle = new ArticleDTO {
-                    Titre = a.Titre,
-                    Contenu = a.Contenu,
-                    Revision = a.Revision,
-                    IdContributeur = a.IdContributeur,
-                    DateModification = a.DateModification
-                };
+                Article aExistant = this._context.Articles.Find(titre);
+                if (aExistant != null) {
+                    monArticle = new ArticleDTO {
+                        Titre = aExistant.Titre,
+                        Contenu = aExistant.Contenu,
+                        Revision = aExistant.Revision,
+                        IdContributeur = aExistant.IdContributeur,
+                        DateModification = aExistant.DateModification
+                    };
+                }
+
 
             } catch (Exception e) {
                 string Msg = e.Message;

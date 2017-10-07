@@ -157,7 +157,14 @@ namespace Wiki.Controllers {
                 return RedirectToAction("Connexion", "Account");
             }
 
-            return View(_articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
+            Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Article, ArticleViewModel>();
+            });
+            IMapper mapper = config.CreateMapper();
+            ArticleViewModel model = mapper.Map<Article, ArticleViewModel>(article);
+
+            return View(model);
         }
 
         [HttpPost]
@@ -168,8 +175,6 @@ namespace Wiki.Controllers {
                 case "Enregistrer":
                     if (ModelState.IsValid) {
                         _articleManager.Update(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
-                        //if (repo.Update(a) != 0)
-                        //    lstArticles = repo.GetArticles();
                         return RedirectToAction("Index", "Home");
                     } else
                         return View(a);
@@ -191,7 +196,16 @@ namespace Wiki.Controllers {
                 return RedirectToAction("Connexion", "Account");
             }
 
-            return View(_articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)));
+
+            Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Article, ArticleViewModel>();
+            });
+            IMapper mapper = config.CreateMapper();
+            ArticleViewModel model = mapper.Map<Article, ArticleViewModel>(article);
+
+            return View(model);
+
         }
 
         [HttpPost]
