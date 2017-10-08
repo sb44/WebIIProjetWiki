@@ -13,16 +13,6 @@ using Wiki.Models.ViewModels;
 namespace Wiki.Controllers {
     public class AccountController : BaseController
     {
-        //private static readonly IUtilisateurRepository utilisateurRepository = new Models.DAL.Utilisateurs();
-        //private readonly IUtilisateurRepository _utilisateurRepository; 
-        //private static UtilisateurManager utilisateurManager;
-
-        //public AccountController() {
-        //    if (utilisateurManager == null) {
-        //        _utilisateurRepository = utilisateurRepository;
-        //        utilisateurManager = new UtilisateurManager(_utilisateurRepository);
-        //    }
-        //}
 
         private readonly IUtilisateurRepository _utilisateurRepository; //readonly assure que seul le ctor peut l'assigner
         private UtilisateurManager _utilisateurManager;

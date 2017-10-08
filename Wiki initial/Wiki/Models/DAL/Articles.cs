@@ -11,164 +11,178 @@ using System.Linq;
 namespace Wiki.Models.DAL {
     public class Articles : IArticleRepository {
 
-        private WikiContext _context;
+        //private WikiContext _context;
 
-        public Articles(WikiContext context) {
-            this._context = context;
-        }
+        //public Articles(WikiContext context) {
+        //    this._context = context;
+        //}
 
-         
+
         // Auteurs: Sasha Bouchard 
         public int Add(ArticleDTO aDto) {
-            int nbRecords = 0; //SqlConnection connexion = null;
-            try {
+            using (var db = new WikiContext()) {
+                int nbRecords = 0; //SqlConnection connexion = null;
+                try {
 
-                Article a = new Article { Titre = aDto.Titre,
-                                        Contenu = aDto.Contenu,
-                                        IdContributeur = aDto.IdContributeur,
-                                        DateModification = DateTime.Now, 
-                                        Revision = 1 }; //DateModification et Revision à définir  puisqu'on n'utilise pas la procédure stocké ici
-                this._context.Articles.Add(a);
-                this._context.SaveChanges();
-                nbRecords = 1;
+                    Article a = new Article {
+                        Titre = aDto.Titre,
+                        Contenu = aDto.Contenu,
+                        IdContributeur = aDto.IdContributeur,
+                        DateModification = DateTime.Now,
+                        Revision = 1
+                    }; //DateModification et Revision à définir  puisqu'on n'utilise pas la procédure stocké ici
+                    db.Articles.Add(a);
+                    db.SaveChanges();
+                    nbRecords = 1;
 
-            } catch (Exception e) {
-                string Msg = e.Message;
-            } finally {
-                //connexion.Close();
+                } catch (Exception e) {
+                    string Msg = e.Message;
+                } finally {
+                    //connexion.Close();
+                }
+
+                return nbRecords;
             }
-
-            return nbRecords;
         }
 
         // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public int Update(ArticleDTO aDto) {
-            int nbRecords = 0; //SqlConnection connexion = null;
-            try {
+            using (var db = new WikiContext()) {
+                int nbRecords = 0; //SqlConnection connexion = null;
+                try {
 
-                Article a = new Article { Titre = aDto.Titre,
-                                        Contenu = aDto.Contenu,
-                                        IdContributeur = aDto.IdContributeur,
-                                        DateModification = DateTime.Now,
-                                        Revision = aDto.Revision + 1};
+                    Article a = new Article {
+                        Titre = aDto.Titre,
+                        Contenu = aDto.Contenu,
+                        IdContributeur = aDto.IdContributeur,
+                        DateModification = DateTime.Now,
+                        Revision = aDto.Revision + 1
+                    };
 
-                Article aExistant = this._context.Articles.Find(a.Titre);
-                if (aExistant != null) {
-                    this._context.Entry(aExistant).CurrentValues.SetValues(a);
-                    this._context.Entry(aExistant).State = System.Data.Entity.EntityState.Modified;
-                } else {
-                    // on le rajoute puisque probablement supprimé par autre utilisateur presque simultané
-                    this._context.Articles.Add(a);
+                    Article aExistant = db.Articles.Find(a.Titre);
+                    if (aExistant != null) {
+                        db.Entry(aExistant).CurrentValues.SetValues(a);
+                        db.Entry(aExistant).State = System.Data.Entity.EntityState.Modified;
+                    } else {
+                        // on le rajoute puisque probablement supprimé par autre utilisateur presque simultané
+                        db.Articles.Add(a);
+                    }
+                    db.SaveChanges();
+                    nbRecords = 1;
+
+                } catch (Exception e) {
+                    string Msg = e.Message;
+                } finally {
+                    //connexion.Close();
                 }
-                this._context.SaveChanges();
-                nbRecords = 1;
 
-            } catch (Exception e) {
-                string Msg = e.Message;
-            } finally {
-                //connexion.Close();
+                return nbRecords;
             }
-
-            return nbRecords;
         }
 
 
         // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public int Delete(string titre) {
+            using (var db = new WikiContext()) {
+                int nbRecords = 0; //SqlConnection connexion = null;
+                try {
 
-            int nbRecords = 0; //SqlConnection connexion = null;
-            try {
+                    Article aExistant = db.Articles.Find(titre);
+                    if (aExistant != null) {
+                        db.Articles.Remove(aExistant);
+                        db.SaveChanges();
+                        nbRecords = 1;
+                    } else {
+                        //déjà supprimé...
+                    }
 
-                Article aExistant = this._context.Articles.Find(titre);
-                if (aExistant != null) {
-                    this._context.Articles.Remove(aExistant);
-                    this._context.SaveChanges();
-                    nbRecords = 1;
-                } else {
-                    //déjà supprimé...
+                } catch (Exception e) {
+                    string Msg = e.Message;
+                } finally {
+                    // connexion.Close();
                 }
-
-            } catch (Exception e) {
-                string Msg = e.Message;
-            } finally {
-               // connexion.Close();
+                return nbRecords;
             }
 
-            return nbRecords;
         }
 
         // Auteurs: Sasha Bouchard verifié par Arash Amiri
         public ArticleDTO Find(string titre) {
+            using (var db = new WikiContext()) {
+                ArticleDTO monArticle = null; //SqlConnection connexion = null;
+                try {
 
-            ArticleDTO monArticle = null; //SqlConnection connexion = null;
-            try {
+                    Article aExistant = db.Articles.Find(titre);
+                    if (aExistant != null) {
+                        monArticle = new ArticleDTO {
+                            Titre = aExistant.Titre,
+                            Contenu = aExistant.Contenu,
+                            Revision = aExistant.Revision,
+                            IdContributeur = aExistant.IdContributeur,
+                            DateModification = aExistant.DateModification
+                        };
+                    }
 
-                Article aExistant = this._context.Articles.Find(titre);
-                if (aExistant != null) {
-                    monArticle = new ArticleDTO {
-                        Titre = aExistant.Titre,
-                        Contenu = aExistant.Contenu,
-                        Revision = aExistant.Revision,
-                        IdContributeur = aExistant.IdContributeur,
-                        DateModification = aExistant.DateModification
-                    };
+
+                } catch (Exception e) {
+                    string Msg = e.Message;
+                } finally {
+                    //connexion.Close();
                 }
 
-
-            } catch (Exception e) {
-                string Msg = e.Message;
-            } finally {
-                //connexion.Close();
+                return monArticle; // retourne null par l'assignation en cas d'erreur
             }
-
-            return monArticle; // retourne null par l'assignation en cas d'erreur
         }
 
 
         // Auteurs: Sasha Bouchard
         public IList<ArticleDTO> GetArticles() {
-            List<ArticleDTO> lstArticles = new List<ArticleDTO>(); //SqlConnection connexion = null;
-            try {
+            using (var db = new WikiContext()) {
+                List<ArticleDTO> lstArticles = new List<ArticleDTO>(); //SqlConnection connexion = null;
+                try {
 
-                var arts = this._context.Articles.ToList();
-                foreach (var a in arts)
-                    lstArticles.Add(new ArticleDTO {
-                        Titre = a.Titre,
-                        Contenu = a.Contenu,
-                        Revision = a.Revision,
-                        IdContributeur = a.IdContributeur,
-                        DateModification = a.DateModification
-                    });
+                    var arts = db.Articles.ToList();
+                    foreach (var a in arts)
+                        lstArticles.Add(new ArticleDTO {
+                            Titre = a.Titre,
+                            Contenu = a.Contenu,
+                            Revision = a.Revision,
+                            IdContributeur = a.IdContributeur,
+                            DateModification = a.DateModification
+                        });
 
 
-            } catch (Exception e) {
-                string Msg = e.Message;
-            } finally {
-               //connexion.Close();
+                } catch (Exception e) {
+                    string Msg = e.Message;
+                } finally {
+                    //connexion.Close();
+                }
+
+                return lstArticles; // retourne une liste vide en cas d'erreur (ou si elle est vide)
             }
-
-            return lstArticles; // retourne une liste vide en cas d'erreur (ou si elle est vide)
         }
 
         // Auteurs: Sasha Bouchard
         public IList<string> GetTitres() {
-            IList<string> lstTitres = new List<string>(); //SqlConnection connexion = null;
-            
-            try {
+            using (var db = new WikiContext()) {
+                IList<string> lstTitres = new List<string>(); //SqlConnection connexion = null;
 
-             var arts = this._context.Articles.ToList();
+                try {
 
-            foreach (var a in arts)
-                lstTitres.Add(a.Titre);
-                
+                    var arts = db.Articles.ToList();
 
-        } catch (Exception e) {
-                string Msg = e.Message;
-            } finally {
-                //connexion.Close();
+                    foreach (var a in arts)
+                        lstTitres.Add(a.Titre);
+
+
+                } catch (Exception e) {
+                    string Msg = e.Message;
+                } finally {
+                    //connexion.Close();
+                }
+
+                return lstTitres; // retourne une liste vide en cas d'erreur (ou si elle est vide)
             }
-
-            return lstTitres; // retourne une liste vide en cas d'erreur (ou si elle est vide)
         }
 
         private string ConnectionString {

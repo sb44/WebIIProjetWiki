@@ -15,13 +15,6 @@ namespace Wiki.Models.DAL {
 
         private string ConnectionString = ConfigurationManager.ConnectionStrings["Wiki"].ConnectionString;
 
-        // ajout sasha
-        private readonly WikiContext _context;
-
-        public Utilisateurs(WikiContext context) {
-            this._context = context;
-        }
-
 
         // ajout sasha
         public IList<UtilisateurDTO> GetUtilisateurs() {
@@ -31,23 +24,13 @@ namespace Wiki.Models.DAL {
 
         public int AddUtilisateur(string Courriel, string MDP, string Prenom, string NomDeFamille, string Langue) {
             int OK = 0;
-            /*
-            string a = PasswordHash.CreateHash(MDP);
-            SqlConnection connexion = new SqlConnection(ConnectionString);
-            SqlCommand sqlCmd = new SqlCommand("AddUtilisateur", connexion);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            sqlCmd.Parameters.Add("@Courriel", SqlDbType.NVarChar).Value = Courriel;
-            sqlCmd.Parameters.Add("@MDP", SqlDbType.NVarChar).Value = PasswordHash.CreateHash(MDP);
-            sqlCmd.Parameters.Add("@Prenom", SqlDbType.NVarChar).Value = Prenom;
-            sqlCmd.Parameters.Add("@NomFamille", SqlDbType.NVarChar).Value = NomDeFamille;
-            sqlCmd.Parameters.Add("@Langue", SqlDbType.NVarChar).Value = Langue;
-            */
-            try {
+            using (var db = new WikiContext()) {
+                try {
                 /* connexion.Open();
                 sqlCmd.ExecuteNonQuery(); */
                 Utilisateur u = new Utilisateur { Courriel = Courriel, MDP = MDP, Prenom = Prenom, NomFamille = NomDeFamille, Langue = Langue};
 
-                this._context.Utilisateurs.Add(u);
+                    db.Utilisateurs.Add(u);
 
                 OK = 1;
             } catch (Exception e) {
@@ -57,6 +40,7 @@ namespace Wiki.Models.DAL {
                 //connexion.Close();
             }
             return OK;
+            }
         }
 
 
