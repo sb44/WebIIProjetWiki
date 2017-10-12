@@ -28,11 +28,17 @@ namespace Wiki.Models.DAL {
                 try {
                 /* connexion.Open();
                 sqlCmd.ExecuteNonQuery(); */
-                Utilisateur u = new Utilisateur { Courriel = Courriel, MDP = MDP, Prenom = Prenom, NomFamille = NomDeFamille, Langue = Langue};
+                Utilisateur u = new Utilisateur { Courriel = Courriel,
+                                                MDP = PasswordHash.CreateHash(MDP),
+                                                Prenom = Prenom,
+                                                NomFamille = NomDeFamille,
+                                                Langue = Langue};
 
                     db.Utilisateurs.Add(u);
+                    db.SaveChanges();
 
-                OK = 1;
+                    OK = 1;
+
             } catch (Exception e) {
                 string Msg = e.Message;
                 OK = -1;
@@ -58,12 +64,11 @@ namespace Wiki.Models.DAL {
 
                 while (dataReader.Read()) {
                     u.Id = (int)dataReader["Id"];
-                    u.Courriel = Courriel;
+                    u.Courriel = (string)dataReader["Courriel"]; // mod sb
                     u.NomFamille = (string)dataReader["NomFamille"];
                     u.Prenom = (string)dataReader["Prenom"];
                     u.Langue = (string)dataReader["Langue"];
                     u.MDP = (string)dataReader["MDP"];
-
                 }
 
             } catch (Exception e) {
@@ -72,7 +77,7 @@ namespace Wiki.Models.DAL {
                connexion.Close();
             }
 
-            if (u != null)
+            if (u.Courriel != null)
                 return u;
             else
                 return null;
