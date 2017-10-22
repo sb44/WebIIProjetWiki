@@ -15,13 +15,6 @@ namespace Wiki.Models.DAL {
 
         private string ConnectionString = ConfigurationManager.ConnectionStrings["Wiki"].ConnectionString;
 
-
-        // ajout sasha
-        public IList<UtilisateurDTO> GetUtilisateurs() {
-            throw new NotImplementedException();
-        }
-
-
         public int AddUtilisateur(string Courriel, string MDP, string Prenom, string NomDeFamille, string Langue) {
             int OK = 0;
             using (var db = new WikiContext()) {

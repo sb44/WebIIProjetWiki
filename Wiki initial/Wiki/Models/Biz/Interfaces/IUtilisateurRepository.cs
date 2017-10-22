@@ -9,6 +9,6 @@ namespace Wiki.Models.Biz.Interfaces {
         int UpdateMotDePasse(int Id, string NouveauMDP);
         UtilisateurDTO FindUtilisateurById(int Id);
         UtilisateurDTO FindUtilisateurByCourriel(string Courriel);
-        IList<UtilisateurDTO> GetUtilisateurs();
+       // IList<UtilisateurDTO> GetUtilisateurs();
     }
 }

@@ -34,9 +34,6 @@ namespace Wiki.Controllers
                 CultureHelper.CurrentCulture = culture;
             }
 
-
-
-
             base.ExecuteCore();
         }
 

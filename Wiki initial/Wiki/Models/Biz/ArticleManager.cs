@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using System.Collections.Generic;
 using Wiki.Models.Biz.DTO;
 using Wiki.Models.Biz.Interfaces;
@@ -14,12 +15,12 @@ namespace Wiki.Models.Biz {
         public ArticleManager(IArticleRepository articleRepository) {
             this._articleRepository = articleRepository;
             this.lstArticles = this.GetArticles();
-            this.lstTitres = this.GetTitres();
+            //this.lstTitres = this.GetTitres();
         }
 
         public void UpdateLists() {
             this.lstArticles = this.GetArticles();
-            this.lstTitres = this.GetTitres();
+            //this.lstTitres = this.GetTitres();
         }
 
         public int Add(ArticleDTO aDto) {
@@ -70,39 +71,24 @@ namespace Wiki.Models.Biz {
         }
 
         public Article Find(string titre) {
-            try {
 
-                var aDto = _articleRepository.Find(titre);
-                var a = new Article() {
-                    Titre = aDto.Titre,
-                    Contenu = aDto.Contenu,
-                    DateModification = aDto.DateModification,
-                    Revision = aDto.Revision,
-                    IdContributeur = aDto.IdContributeur
-                };
+            try {
+                ArticleDTO aDto = _articleRepository.Find(titre);
+                Article a = Mapper.Map<ArticleDTO, Article>(aDto);
 
                 return a;
 
             } catch (System.Exception) {
                 throw;
             }
-         
 
         }
 
         public IList<Article> GetArticles() {
            
             try {
-                var lstArticlesDto = _articleRepository.GetArticles();
-                var lstArticles = new List<Article>();
-                foreach (var aDto in lstArticlesDto)
-                    lstArticles.Add(new Article {
-                        Titre = aDto.Titre,
-                        Contenu = aDto.Contenu,
-                        Revision = aDto.Revision,
-                        IdContributeur = aDto.IdContributeur,
-                        DateModification = aDto.DateModification
-                    });
+                IList<ArticleDTO> lstArticlesDto = _articleRepository.GetArticles();
+                IList<Article> lstArticles = Mapper.Map<IList<ArticleDTO>, IList<Article>>(lstArticlesDto);
 
                 return lstArticles;
             } catch (System.Exception) {

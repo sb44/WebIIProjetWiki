@@ -11,6 +11,7 @@ using Wiki.CultureHelp;
 using Wiki.Models.ViewModels;
 using System.Threading;
 using AutoMapper;
+using Wiki.Models.Biz.DTO;
 
 namespace Wiki.Controllers {
     public class HomeController : BaseController {
@@ -74,12 +75,10 @@ namespace Wiki.Controllers {
 
             // AFFICHER L'ARTICLE SI SAISIE OU SÉLECTIONNÉ
             if (!String.IsNullOrEmpty(titre)) {
-                Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
-                var config = new MapperConfiguration(cfg => {
-                    cfg.CreateMap<Article, ArticleViewModel>();
-                });
-                IMapper mapper = config.CreateMapper();
-                ArticleViewModel model = mapper.Map<Article, ArticleViewModel>(article);
+
+                Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre));
+                ArticleViewModel model = Mapper.Map<Article, ArticleViewModel>(article); // conversion d'une entité Article en ArticleViewModel
+
                 if (model != null)
                     return View(model);
                 else { /* Saisie d'un article inexistant au clavier, donc 
@@ -95,12 +94,8 @@ namespace Wiki.Controllers {
 
         [ChildActionOnly]
         public ActionResult PartialTableDesMatieres() {
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Article, ArticleViewModel>();
-            });
-            IMapper mapper = config.CreateMapper();
             IList<Article> lArt = _articleManager.lstArticles;
-            IList<ArticleViewModel> model = mapper.Map<IList<Article>, IList<ArticleViewModel>>(lArt);
+            IList<ArticleViewModel> model = Mapper.Map<IList<Article>, IList<ArticleViewModel>>(lArt);
             return PartialView(model);
         }
 
@@ -108,13 +103,10 @@ namespace Wiki.Controllers {
         [Route("home/ajouter/{titre}")]
         public ActionResult ajouter(string titre) //ajouter article dans un blog
         {
-
-
             if (!User.Identity.IsAuthenticated)               /////////////////////// Ajout par Haiqiang XU 
             {                  
                 return RedirectToAction("Connexion", "Account");   
             }
-
 
             ViewBag.TitreParDefault = titre; // titre par défaut dans le cas d'une Saisie d'un article inexistant au clavier:
             return View();
@@ -131,12 +123,10 @@ namespace Wiki.Controllers {
                         ModelState.AddModelError("Titre", Ressource.RessourceView.ERR_HC_Home_titre);
 
                     if (ModelState.IsValid) {
-
-                        _articleManager.Add(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
-
+                        ArticleDTO aDto = Mapper.Map<ArticleViewModel, ArticleDTO>(a); //conversion d'une entité ArticleViewModel en ArticleDTO
+                        _articleManager.Add(aDto);
                         return RedirectToAction("Index", "Home", new { titre = a.Titre }); // pour displayer la nouvelle article créé..
                     } else {
-
                         return View(a);
                     }
                     break;
@@ -157,13 +147,8 @@ namespace Wiki.Controllers {
                 return RedirectToAction("Connexion", "Account");
             }
 
-            Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Article, ArticleViewModel>();
-            });
-            IMapper mapper = config.CreateMapper();
-            ArticleViewModel model = mapper.Map<Article, ArticleViewModel>(article);
-
+            Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre));
+            ArticleViewModel model = Mapper.Map<Article, ArticleViewModel>(article); // conversion d'une entité Article en ArticleViewModel
             return View(model);
         }
 
@@ -174,7 +159,8 @@ namespace Wiki.Controllers {
             switch (operation) {
                 case "Enregistrer":
                     if (ModelState.IsValid) {
-                        _articleManager.Update(new Models.Biz.DTO.ArticleDTO { Titre = a.Titre, Contenu = a.Contenu, DateModification = a.DateModification, Revision = a.Revision, IdContributeur = a.IdContributeur });
+                        ArticleDTO aDto = Mapper.Map<ArticleViewModel, ArticleDTO>(a);
+                        _articleManager.Update(aDto);
                         return RedirectToAction("Index", "Home");
                     } else
                         return View(a);
@@ -196,14 +182,8 @@ namespace Wiki.Controllers {
                 return RedirectToAction("Connexion", "Account");
             }
 
-
-            Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre)); // Article a = repo.Find(titre);
-            var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Article, ArticleViewModel>();
-            });
-            IMapper mapper = config.CreateMapper();
-            ArticleViewModel model = mapper.Map<Article, ArticleViewModel>(article);
-
+            Article article = _articleManager.lstArticles.FirstOrDefault(p => p.Titre.Equals(titre));
+            ArticleViewModel model = Mapper.Map<Article, ArticleViewModel>(article); // conversion d'une entité Article en ArticleViewModel
             return View(model);
 
         }

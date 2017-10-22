@@ -7,6 +7,7 @@ using Wiki.Models.Biz.DTO;
 using Wiki.Models.Biz.Interfaces;
 using Wiki.Models.Biz;
 using System.Linq;
+using AutoMapper;
 
 namespace Wiki.Models.DAL {
     public class Articles : IArticleRepository {
@@ -67,8 +68,7 @@ namespace Wiki.Models.DAL {
                         // on le rajoute puisque probablement supprimé par autre utilisateur presque simultané
                         db.Articles.Add(a);
                     }
-                    db.SaveChanges();
-                    nbRecords = 1;
+                    nbRecords = db.SaveChanges(); // https://msdn.microsoft.com/en-us/library/system.data.entity.dbcontext.savechanges(v=vs.113).aspx
 
                 } catch (Exception e) {
                     string Msg = e.Message;
@@ -90,8 +90,7 @@ namespace Wiki.Models.DAL {
                     Article aExistant = db.Articles.Find(titre);
                     if (aExistant != null) {
                         db.Articles.Remove(aExistant);
-                        db.SaveChanges();
-                        nbRecords = 1;
+                        nbRecords = db.SaveChanges();
                     } else {
                         //déjà supprimé...
                     }
@@ -114,15 +113,8 @@ namespace Wiki.Models.DAL {
 
                     Article aExistant = db.Articles.Find(titre);
                     if (aExistant != null) {
-                        monArticle = new ArticleDTO {
-                            Titre = aExistant.Titre,
-                            Contenu = aExistant.Contenu,
-                            Revision = aExistant.Revision,
-                            IdContributeur = aExistant.IdContributeur,
-                            DateModification = aExistant.DateModification
-                        };
+                        monArticle = Mapper.Map<Article, ArticleDTO>(aExistant);
                     }
-
 
                 } catch (Exception e) {
                     string Msg = e.Message;
@@ -138,19 +130,11 @@ namespace Wiki.Models.DAL {
         // Auteurs: Sasha Bouchard
         public IList<ArticleDTO> GetArticles() {
             using (var db = new WikiContext()) {
-                List<ArticleDTO> lstArticles = new List<ArticleDTO>(); //SqlConnection connexion = null;
+                IList<ArticleDTO> lstArtDto = new List<ArticleDTO>(); //SqlConnection connexion = null;
                 try {
 
                     var arts = db.Articles.ToList();
-                    foreach (var a in arts)
-                        lstArticles.Add(new ArticleDTO {
-                            Titre = a.Titre,
-                            Contenu = a.Contenu,
-                            Revision = a.Revision,
-                            IdContributeur = a.IdContributeur,
-                            DateModification = a.DateModification
-                        });
-
+                    lstArtDto = Mapper.Map<IList<Article>, IList<ArticleDTO>>(arts);
 
                 } catch (Exception e) {
                     string Msg = e.Message;
@@ -158,7 +142,7 @@ namespace Wiki.Models.DAL {
                     //connexion.Close();
                 }
 
-                return lstArticles; // retourne une liste vide en cas d'erreur (ou si elle est vide)
+                return lstArtDto; // retourne une liste vide en cas d'erreur (ou si elle est vide)
             }
         }
 
@@ -173,7 +157,6 @@ namespace Wiki.Models.DAL {
 
                     foreach (var a in arts)
                         lstTitres.Add(a.Titre);
-
 
                 } catch (Exception e) {
                     string Msg = e.Message;

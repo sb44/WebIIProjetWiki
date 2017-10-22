@@ -18,7 +18,6 @@ namespace Wiki
             container.RegisterType<Models.Biz.Interfaces.IArticleRepository, Models.DAL.Articles>();
             container.RegisterType<Models.Biz.Interfaces.IUtilisateurRepository, Models.DAL.Utilisateurs>();
 
-
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
