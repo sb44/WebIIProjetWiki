@@ -46,12 +46,14 @@ namespace Wiki.Controllers {
                 FormsAuthentication.SetAuthCookie(model.Courriel, false);
                 // Users.currentUser = Users.GetUserByEmail(email);
 
-                //ajout sasha
+                //ajout sasha        
                 var uDto = _utilisateurManager.FindUtilisateurByCourriel(model.Courriel);
                 var langCookie = (uDto.Langue.ToString().ToLower().IndexOf("fr") != -1) ? new HttpCookie("lang", "0") { HttpOnly = true } :
                                  (uDto.Langue.ToString().ToLower().IndexOf("en") != -1) ? new HttpCookie("lang", "1") { HttpOnly = true } :
                                  (uDto.Langue.ToString().ToLower().IndexOf("es") != -1) ? new HttpCookie("lang", "2") { HttpOnly = true } : new HttpCookie("lang", "0") { HttpOnly = true };
                 Response.AppendCookie(langCookie);
+                Session["userId"] = uDto.Id;
+
                 // ajout arash
                 CultureHelper.CurrentCulture = int.Parse(langCookie.Value);
 
